@@ -1,0 +1,736 @@
+[
+  {
+    "id": 1,
+    "name": "Spaghetti Carbonara",
+    "cooking_time": "quick",
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "spaghetti",
+        "amount": 400,
+        "unit": "g"
+      },
+      {
+        "name": "bacon",
+        "amount": 200,
+        "unit": "g"
+      },
+      {
+        "name": "eggs",
+        "amount": 4,
+        "unit": "pcs"
+      },
+      {
+        "name": "parmesan cheese",
+        "amount": 100,
+        "unit": "g"
+      },
+      {
+        "name": "garlic",
+        "amount": 2,
+        "unit": "cloves"
+      }
+    ],
+    "steps": [
+      "Boil water in a large pot and cook spaghetti according to package directions",
+      "While pasta cooks, dice bacon and fry in a large pan until crispy",
+      "Mince garlic and add to bacon for 1 minute",
+      "Beat eggs and mix with grated parmesan in a bowl",
+      "Drain pasta, reserving 1 cup pasta water",
+      "Remove pan from heat, add hot pasta to bacon",
+      "Quickly stir in egg mixture, adding pasta water to create a creamy sauce",
+      "Season with black pepper and serve immediately"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Chicken Stir-fry",
+    "cooking_time": "quick",
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "chicken breast",
+        "amount": 500,
+        "unit": "g"
+      },
+      {
+        "name": "mixed vegetables",
+        "amount": 400,
+        "unit": "g"
+      },
+      {
+        "name": "soy sauce",
+        "amount": 60,
+        "unit": "ml"
+      },
+      {
+        "name": "rice",
+        "amount": 300,
+        "unit": "g"
+      },
+      {
+        "name": "ginger",
+        "amount": 20,
+        "unit": "g"
+      },
+      {
+        "name": "garlic",
+        "amount": 3,
+        "unit": "cloves"
+      }
+    ],
+    "steps": [
+      "Cook rice according to package directions",
+      "Cut chicken into bite-sized pieces",
+      "Mince garlic and ginger",
+      "Heat oil in a wok or large pan over high heat",
+      "Stir-fry chicken until golden, then remove",
+      "Add garlic and ginger, cook for 30 seconds",
+      "Add vegetables and stir-fry for 3-4 minutes",
+      "Return chicken to pan, add soy sauce, toss to combine",
+      "Serve hot over rice"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Beef Stew",
+    "cooking_time": "long",
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "beef chuck",
+        "amount": 800,
+        "unit": "g"
+      },
+      {
+        "name": "carrots",
+        "amount": 400,
+        "unit": "g"
+      },
+      {
+        "name": "potatoes",
+        "amount": 600,
+        "unit": "g"
+      },
+      {
+        "name": "onions",
+        "amount": 300,
+        "unit": "g"
+      },
+      {
+        "name": "beef stock",
+        "amount": 500,
+        "unit": "ml"
+      },
+      {
+        "name": "tomato paste",
+        "amount": 50,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Cut beef into 3cm cubes and season with salt and pepper",
+      "Brown beef in batches in a large pot with oil, then set aside",
+      "Dice onions and saut\u00e9 until softened",
+      "Add tomato paste and cook for 1 minute",
+      "Return beef to pot, add stock and bring to boil",
+      "Reduce heat, cover and simmer for 1.5 hours",
+      "Cut carrots and potatoes into chunks",
+      "Add vegetables and simmer for 30 minutes until tender",
+      "Season to taste and serve with crusty bread"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Vegetable Curry",
+    "cooking_time": "quick",
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "mixed vegetables",
+        "amount": 600,
+        "unit": "g"
+      },
+      {
+        "name": "coconut milk",
+        "amount": 400,
+        "unit": "ml"
+      },
+      {
+        "name": "curry paste",
+        "amount": 50,
+        "unit": "g"
+      },
+      {
+        "name": "rice",
+        "amount": 300,
+        "unit": "g"
+      },
+      {
+        "name": "onions",
+        "amount": 200,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Cook rice according to package directions",
+      "Dice onions and saut\u00e9 in a large pan until softened",
+      "Add curry paste and cook for 1 minute until fragrant",
+      "Add mixed vegetables and stir to coat in paste",
+      "Pour in coconut milk and bring to simmer",
+      "Cook for 10-12 minutes until vegetables are tender",
+      "Season with salt to taste",
+      "Serve over rice with fresh coriander if desired"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Lasagna",
+    "cooking_time": "long",
+    "servings": 6,
+    "ingredients": [
+      {
+        "name": "lasagna sheets",
+        "amount": 250,
+        "unit": "g"
+      },
+      {
+        "name": "ground beef",
+        "amount": 500,
+        "unit": "g"
+      },
+      {
+        "name": "tomato sauce",
+        "amount": 400,
+        "unit": "g"
+      },
+      {
+        "name": "mozzarella cheese",
+        "amount": 300,
+        "unit": "g"
+      },
+      {
+        "name": "onions",
+        "amount": 150,
+        "unit": "g"
+      },
+      {
+        "name": "garlic",
+        "amount": 3,
+        "unit": "cloves"
+      }
+    ],
+    "steps": [
+      "Preheat oven to 180\u00b0C (350\u00b0F)",
+      "Dice onions and garlic, saut\u00e9 until softened",
+      "Add ground beef and brown, breaking up with a spoon",
+      "Stir in tomato sauce and simmer for 10 minutes",
+      "In a baking dish, layer: sauce, lasagna sheets, sauce, repeat",
+      "Top final layer with mozzarella cheese",
+      "Cover with foil and bake for 30 minutes",
+      "Remove foil and bake 10 more minutes until golden",
+      "Let rest 10 minutes before serving"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Fish Tacos",
+    "cooking_time": "quick",
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "white fish fillets",
+        "amount": 500,
+        "unit": "g"
+      },
+      {
+        "name": "tortillas",
+        "amount": 8,
+        "unit": "pcs"
+      },
+      {
+        "name": "cabbage",
+        "amount": 200,
+        "unit": "g"
+      },
+      {
+        "name": "lime",
+        "amount": 2,
+        "unit": "pcs"
+      },
+      {
+        "name": "sour cream",
+        "amount": 150,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Cut fish into strips and season with salt, pepper, and lime juice",
+      "Thinly slice cabbage for slaw",
+      "Heat oil in a pan over medium-high heat",
+      "Cook fish for 3-4 minutes per side until golden and cooked through",
+      "Warm tortillas in a dry pan or microwave",
+      "Assemble tacos: tortilla, cabbage, fish, sour cream",
+      "Squeeze fresh lime over each taco",
+      "Serve immediately with extra lime wedges"
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Roast Chicken Dinner",
+    "cooking_time": "long",
+    "servings": 5,
+    "ingredients": [
+      {
+        "name": "whole chicken",
+        "amount": 1500,
+        "unit": "g"
+      },
+      {
+        "name": "potatoes",
+        "amount": 800,
+        "unit": "g"
+      },
+      {
+        "name": "carrots",
+        "amount": 400,
+        "unit": "g"
+      },
+      {
+        "name": "onions",
+        "amount": 200,
+        "unit": "g"
+      },
+      {
+        "name": "olive oil",
+        "amount": 50,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Preheat oven to 200\u00b0C (400\u00b0F)",
+      "Pat chicken dry and rub with olive oil, salt, and pepper",
+      "Cut potatoes into wedges, carrots into chunks, onions into quarters",
+      "Toss vegetables with olive oil, salt, and pepper",
+      "Place chicken in a roasting pan, surround with vegetables",
+      "Roast for 1 hour 15 minutes, basting occasionally",
+      "Check chicken is cooked (juices run clear, internal temp 75\u00b0C)",
+      "Rest chicken for 10 minutes before carving",
+      "Serve with roasted vegetables and pan juices"
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Mushroom Risotto",
+    "cooking_time": "long",
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "arborio rice",
+        "amount": 300,
+        "unit": "g"
+      },
+      {
+        "name": "mushrooms",
+        "amount": 400,
+        "unit": "g"
+      },
+      {
+        "name": "vegetable stock",
+        "amount": 1000,
+        "unit": "ml"
+      },
+      {
+        "name": "parmesan cheese",
+        "amount": 100,
+        "unit": "g"
+      },
+      {
+        "name": "onions",
+        "amount": 100,
+        "unit": "g"
+      },
+      {
+        "name": "white wine",
+        "amount": 150,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Heat stock in a pot and keep warm on low heat",
+      "Dice onions finely and slice mushrooms",
+      "Saut\u00e9 mushrooms in butter until golden, set aside",
+      "In same pan, soften onions in butter",
+      "Add rice and stir for 2 minutes until translucent edges",
+      "Add wine and stir until absorbed",
+      "Add stock one ladle at a time, stirring constantly until absorbed",
+      "Continue for 20-25 minutes until rice is creamy and al dente",
+      "Stir in mushrooms and parmesan, season and serve"
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Quesadillas",
+    "cooking_time": "quick",
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "tortillas",
+        "amount": 8,
+        "unit": "pcs"
+      },
+      {
+        "name": "cheddar cheese",
+        "amount": 300,
+        "unit": "g"
+      },
+      {
+        "name": "bell peppers",
+        "amount": 200,
+        "unit": "g"
+      },
+      {
+        "name": "onions",
+        "amount": 100,
+        "unit": "g"
+      },
+      {
+        "name": "black beans",
+        "amount": 200,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Dice bell peppers and onions",
+      "Saut\u00e9 peppers and onions until softened, set aside",
+      "Drain and rinse black beans",
+      "Grate cheese",
+      "Heat a large pan over medium heat",
+      "Place one tortilla in pan, sprinkle with cheese, beans, and vegetables",
+      "Top with another tortilla",
+      "Cook for 2-3 minutes per side until golden and cheese melts",
+      "Cut into wedges and serve with salsa and sour cream"
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Thai Green Curry",
+    "cooking_time": "quick",
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "chicken breast",
+        "amount": 500,
+        "unit": "g"
+      },
+      {
+        "name": "coconut milk",
+        "amount": 400,
+        "unit": "ml"
+      },
+      {
+        "name": "green curry paste",
+        "amount": 50,
+        "unit": "g"
+      },
+      {
+        "name": "rice",
+        "amount": 300,
+        "unit": "g"
+      },
+      {
+        "name": "bamboo shoots",
+        "amount": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Thai basil",
+        "amount": 30,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Cook rice according to package directions",
+      "Cut chicken into bite-sized pieces",
+      "Heat oil in a wok or large pan",
+      "Fry curry paste for 1 minute until fragrant",
+      "Add chicken and stir-fry until sealed",
+      "Pour in coconut milk and bring to simmer",
+      "Add bamboo shoots and simmer for 8-10 minutes",
+      "Tear in Thai basil leaves",
+      "Serve over rice"
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Pecan Pie Cheesecake",
+    "cooking_time": "long",
+    "servings": 12,
+    "ingredients": [
+      {
+        "name": "spray",
+        "amount": 1.0,
+        "unit": "Cooking"
+      },
+      {
+        "name": "graham cracker crumbs (8 ounces; about 2 cups)",
+        "amount": 227.0,
+        "unit": "g"
+      },
+      {
+        "name": "finely chopped toasted pecans (2 ounces; 1/2 cup)",
+        "amount": 57.0,
+        "unit": "g"
+      },
+      {
+        "name": "unsalted butter (113 g), melted, divided",
+        "amount": 8.0,
+        "unit": "tablespoons"
+      },
+      {
+        "name": "(3 3/4 ounces; 1/2 cup), plus 42 g (about 1 1/2 ounces; 3 tablespoons) dark brown sugar, divided",
+        "amount": 107.0,
+        "unit": "g"
+      },
+      {
+        "name": "Diamond Crystal kosher salt, divided; for table salt, use half as much by volume",
+        "amount": 1.25,
+        "unit": "teaspoon"
+      },
+      {
+        "name": "(907 g) cream cheese, softened",
+        "amount": 2.0,
+        "unit": "pounds"
+      },
+      {
+        "name": "granulated sugar (7 ounces; 1 cup)",
+        "amount": 198.0,
+        "unit": "g"
+      },
+      {
+        "name": "eggs, at room temperature",
+        "amount": 4.0,
+        "unit": "large"
+      },
+      {
+        "name": "(120 ml) sour cream",
+        "amount": 0.5,
+        "unit": "cup"
+      },
+      {
+        "name": "(15 ml) vanilla extract",
+        "amount": 1.0,
+        "unit": "tablespoon"
+      },
+      {
+        "name": "dark brown sugar (3 3/4 ounces; 1/2 cup)",
+        "amount": 107.0,
+        "unit": "g"
+      },
+      {
+        "name": "(90 ml) heavy cream",
+        "amount": 6.0,
+        "unit": "tablespoons"
+      },
+      {
+        "name": "(57 g) butter, melted",
+        "amount": 4.0,
+        "unit": "tablespoons"
+      },
+      {
+        "name": "(15 ml) light corn syrup",
+        "amount": 1.0,
+        "unit": "tablespoon"
+      },
+      {
+        "name": "Diamond Crystal kosher salt, divided; for table salt, use half as much by volume",
+        "amount": 0.25,
+        "unit": "teaspoons"
+      },
+      {
+        "name": "pecans (5 3/4 ounce; 1 1/2 cups), toasted and roughly chopped",
+        "amount": 162.0,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "For the Cheesecake: Adjust oven rack to middle position and preheat oven to 350\u00b0F (175\u00b0C). Lightly grease a 9-inch springform pan with cooking spray. Using aluminum foil, wrap bottom half of pan to create a waterproof seal.",
+      "For the Crust: In a medium bowl, stir together graham cracker crumbs, pecans, melted butter, 42 g (about 1 1/2 ounces; 3 tablespoons) brown sugar, and 1/2 teaspoon kosher salt until well combined. Firmly press mixture into bottom and 1 1/2 to 2 inches up the sides of prepared springform pan. Bake until lightly browned, about 10 minutes. Transfer springform pan to a wire rack to cool completely, about 30 minutes. Reduce oven temperature to 325\u00b0F (165\u00b0C).",
+      "After crust has cooled, in a large bowl with a hand mixer, or in the bowl of a stand mixer fitted with paddle attachment, beat cream cheese on medium speed until smooth, about 1 minute. Add granulated sugar and 1/2 cup (3 3/4 ounces; 107 g) brown sugar. Beat on medium-high speed until combined and smooth, about 1 minute. Add eggs, one at a time, beating on low speed until just combined after each addition, stopping to scrape sides of bowl as needed. Add sour cream, vanilla, and remaining 3/4 teaspoon kosher salt. Beat on low speed until just combined, about 1 minute, stopping to scrape down sides of bowl as needed. Set aside.",
+      "Pour cheesecake filling into cooled crust, gently smoothing top into an even layer using a small offset spatula or flexible rubber spatula. Set springform pan in a roasting pan. Place roasting pan in oven and fill with about 2 inches hot water.",
+      "Bake until the center of cheesecake jiggles slightly when shaken, about 1 1/2 hours. Turn oven off, leave oven door ajar by about 4 inches, and let cheesecake cool inside oven for 1 hour. Transfer cheesecake to wire rack and allow to cool completely, about 1 hour. Refrigerate, uncovered, until fully chilled and set, at least 6 hours or up to 24 hours.",
+      "For the Pecan Caramel: After cheesecake has cooled, in a medium saucepan, bring sugar, cream, melted butter, corn syrup, and 1/4 teaspoon kosher salt to a simmer over medium heat, whisking occasionally. Once simmering, stop whisking, and continue to simmer, undisturbed, over medium heat, until mixture becomes slightly darker and a candy thermometer registers 224\u00b0F (106\u00b0C), about 2 minutes. Immediately remove from heat and use a flexible rubber spatula or wooden spoon to stir in pecans until coated. Let cool to room temperature, stirring occasionally, about 30 minutes.",
+      "Carefully remove cheesecake from springform pan and transfer to serving plate. Spoon cooled pecan pie topping over cheesecake. Slice and serve."
+    ],
+    "source_url": "https://www.seriouseats.com/pecan-pie-cheesecake-recipe-11843450",
+    "image_url": "https://www.seriouseats.com/thmb/NjsQ8cXSW-VzB0vdyxLZqOm1PnU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/20251104-SEA-PecanPieCheesecake-MorganHuntWard-HERO-57556144376c4b43b5ce8d9926a5f5bc.jpg"
+  },
+  {
+    "id": 12,
+    "name": "Chilli con carne recipe",
+    "cooking_time": "long",
+    "servings": 4,
+    "ingredients": [
+      {
+        "name": "onion",
+        "amount": 1.0,
+        "unit": "large"
+      },
+      {
+        "name": "pepper",
+        "amount": 1.0,
+        "unit": "red"
+      },
+      {
+        "name": "cloves",
+        "amount": 2.0,
+        "unit": "garlic"
+      },
+      {
+        "name": "oil",
+        "amount": 1.0,
+        "unit": "tbsp"
+      },
+      {
+        "name": "tsp hot chilli powder (or 1 level tbsp if you only have mild)",
+        "amount": 1.0,
+        "unit": "heaped"
+      },
+      {
+        "name": "paprika",
+        "amount": 1.0,
+        "unit": "tsp"
+      },
+      {
+        "name": "ground cumin",
+        "amount": 1.0,
+        "unit": "tsp"
+      },
+      {
+        "name": "lean minced beef",
+        "amount": 500.0,
+        "unit": "g"
+      },
+      {
+        "name": "stock cube",
+        "amount": 1.0,
+        "unit": "beef"
+      },
+      {
+        "name": "can chopped tomatoes",
+        "amount": 400.0,
+        "unit": "g"
+      },
+      {
+        "name": "\u00bd tsp dried marjoram",
+        "amount": 1.0,
+        "unit": "pcs"
+      },
+      {
+        "name": "sugar (or add a thumbnail-sized piece of dark chocolate along with the beans instead, see tip)",
+        "amount": 1.0,
+        "unit": "tsp"
+      },
+      {
+        "name": "tomato pur\u00e9e",
+        "amount": 2.0,
+        "unit": "tbsp"
+      },
+      {
+        "name": "can red kidney beans",
+        "amount": 410.0,
+        "unit": "g"
+      },
+      {
+        "name": "boiled long grain rice to serve",
+        "amount": 1.0,
+        "unit": "plain"
+      },
+      {
+        "name": "cream to serve",
+        "amount": 1.0,
+        "unit": "soured"
+      }
+    ],
+    "steps": [
+      "Prepare your vegetables. Chop 1 large onion into small dice, about 5mm square. The easiest way to do this is to cut the onion in half from root to tip, peel it and slice each half into thick matchsticks lengthways, not quite cutting all the way to the root end so they are still held together. Slice across the matchsticks into neat dice.",
+      "Cut 1 red pepper in half lengthways, remove stalk and wash the seeds away, then chop. Peel and finely chop 2 garlic cloves.",
+      "Start cooking. Put your pan on the hob over a medium heat. Add 1 tbsp oil and leave it for 1-2 minutes until hot (a little longer for an electric hob).",
+      "Add the onion and cook, stirring fairly frequently, for about 5 minutes, or until the onion is soft, squidgy and slightly translucent.",
+      "Tip in the garlic, red pepper, 1 heaped tsp hot chilli powder or 1 level tbsp mild chilli powder, 1 tsp paprika and 1 tsp ground cumin.",
+      "Give it a good stir, then leave it to cook for another 5 minutes, stirring occasionally.",
+      "Brown 500g lean minced beef. Turn the heat up a bit, add the meat to the pan and break it up with your spoon or spatula. The mix should sizzle a bit when you add the mince.",
+      "Keep stirring and prodding for at least 5 minutes, until all the mince is in uniform, mince-sized lumps and there are no more pink bits. Make sure you keep the heat hot enough for the meat to fry and become brown, rather than just stew.",
+      "Make the sauce. Crumble 1 beef stock cube into 300ml hot water. Pour this into the pan with the mince mixture.",
+      "Add a 400g can of chopped tomatoes. Tip in \u00bd tsp dried marjoram, 1 tsp sugar and add a good shake of salt and pepper. Squirt in about 2 tbsp tomato pur\u00e9e and stir the sauce well.",
+      "Simmer it gently. Bring the whole thing to the boil, give it a good stir and put a lid on the pan. Turn down the heat until it is gently bubbling and leave it for 20 minutes.",
+      "Check on the pan occasionally to stir it and make sure the sauce doesn\u2019t catch on the bottom of the pan or isn\u2019t drying out. If it is, add a couple of tablespoons of water and make sure that the heat really is low enough. After simmering gently, the saucy mince mixture should look thick, moist and juicy.",
+      "Drain and rinse a 410g can of red kidney beans in a sieve and stir them into the chilli pot. Bring to the boil again, and gently bubble without the lid for another 10 minutes, adding a little more water if it looks too dry.",
+      "Taste a bit of the chilli and season. It will probably take a lot more seasoning than you think.",
+      "Now replace the lid, turn off the heat and leave your chilli to stand for 10 minutes before serving. This is really important as it allows the flavours to mingle.",
+      "Serve with soured cream and plain boiled long grain rice."
+    ],
+    "source_url": "https://www.bbcgoodfood.com/recipes/chilli-con-carne-recipe",
+    "image_url": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/recipe-image-legacy-id-1001451_6-c8d72b8.jpg?resize=440,400"
+  },
+  {
+    "id": 13,
+    "name": "Creamy One Pot Pasta with Zucchini",
+    "cooking_time": "quick",
+    "servings": 8,
+    "ingredients": [
+      {
+        "name": "olive oil",
+        "amount": 0.25,
+        "unit": "cup"
+      },
+      {
+        "name": "or 5 medium zucchini (2 pounds), coarsely grated",
+        "amount": 4.0,
+        "unit": "large"
+      },
+      {
+        "name": "kosher salt, divided, plus more to taste",
+        "amount": 2.5,
+        "unit": "teaspoons"
+      },
+      {
+        "name": "freshly ground black pepper, plus more to taste",
+        "amount": 0.5,
+        "unit": "teaspoon"
+      },
+      {
+        "name": "water",
+        "amount": 3.25,
+        "unit": "cups"
+      },
+      {
+        "name": "dry rigatoni or penne pasta",
+        "amount": 1.0,
+        "unit": "pound"
+      },
+      {
+        "name": "cream cheese, softened",
+        "amount": 6.0,
+        "unit": "ounces"
+      },
+      {
+        "name": "lemon, zested and juiced (about 2 tablespoons juice)",
+        "amount": 1.0,
+        "unit": "pcs"
+      },
+      {
+        "name": "toasted walnuts",
+        "amount": 0.25,
+        "unit": "chopped"
+      }
+    ],
+    "steps": [
+      "Cook the zucchini: Heat the oil in a large heavy-bottomed pot or Dutch oven over medium-high heat. Add the zucchini and season with 1 teaspoon salt and 1/2 teaspoon black pepper. Cook the zucchini, stirring occasionally, until it expels liquid, the liquid cooks off, and the zucchini caramelizes into a jam-like, spreadable consistency, 10 to 12 minutes. If you start to notice any browning at the bottom of your pot, reduce the heat to medium. Once jammy, transfer the zucchini into a medium bowl and set it aside. Simply Recipes / Alison Bickel",
+      "Cook the pasta: In the same pot (don\u2019t worry about wiping off any browned bits or pieces of zucchini that might be left in the pot), add 3 1/4 cups water and bring it to a boil over high heat. Season the water with the remaining 1 1/2 teaspoons salt. Once the water is boiling, add the pasta and cream cheese, and reduce the heat to medium-high. Break up the cream cheese with the back of a wooden spoon to disperse throughout. It\u2019s okay if the pasta isn\u2019t completely submerged in liquid. Cook, stirring frequently until the pasta is al dente and liquid is reduced and creamy, 11 to 13 minutes. If all the moisture cooks off and the pasta is still undercooked, add a splash of water. Simply Recipes / Alison BickelSimply Recipes / Alison Bickel",
+      "Add the zucchini back in: Add the cooked zucchini, lemon zest, and lemon juice and cook until warmed through, 2 minutes. Add a splash of water to create a thin, glossy sauce, if needed. Season to taste with salt and pepper, if needed. Divide between bowls and top with toasted walnuts. Serve. Though it\u2019s best enjoyed immediately, you can always refrigerate leftovers in an airtight container for up to 3 days and reheat it in the microwave or in a saucepan with a splash of water. Did you love the recipe? Give us some stars and leave a comment below! Simply Recipes / Alison BickelSimply Recipes / Alison Bickel"
+    ],
+    "source_url": "https://www.simplyrecipes.com/creamy-one-pot-pasta-with-zucchini-recipe-5498699",
+    "image_url": "https://www.simplyrecipes.com/thmb/ZZ_kzcQ92_6BqbngVh0_UNfqzSY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Simply-Recipes-Creamy-One-Pot-Pasta-with-Zucchini-LEAD-8-98d788600d4e4344a02785ad486aeba8.jpg"
+  }
+]
