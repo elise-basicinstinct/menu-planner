@@ -287,11 +287,37 @@ def create_plan(household_size: int, nights: int, preference: str):
 
 All interfaces share the same core business logic.
 
+## Deployment
+
+The application is configured for deployment on Render.com using the `render.yaml` configuration file.
+
+**Deployment Configuration:**
+- `render.yaml` - Infrastructure-as-code config for Render.com
+- Environment: Python
+- Build: `pip install -r requirements.txt`
+- Start: `gunicorn web:app`
+- Free tier supported
+
+**Requirements for Production:**
+- `gunicorn>=21.0.0` (WSGI HTTP server)
+- `web.py` configured to use PORT environment variable for cloud platforms
+- Port 5001 used locally, dynamic PORT in production
+
+**Deployment Files:**
+- `DEPLOYMENT.md` - Comprehensive deployment guide (Render, PythonAnywhere, Railway)
+- `DEPLOYMENT_CHECKLIST.md` - Step-by-step deployment checklist
+- `.gitignore` - Excludes Python cache, test files, and temporary files
+
+**Known Production Limitations:**
+- Selenium/Chrome dependencies won't work on free tier hosting (removes Coles scraper functionality)
+- Render free tier: app sleeps after inactivity (30s wake-up time)
+- Temp recipes stored in memory - not multi-user safe without session storage/database
+
 ## Important Implementation Notes
 
 ### Dependencies
 - **CLI**: Python 3.6+, `recipe-scrapers>=15.9.0` (for URL imports)
-- **Web**: Flask 3.0.0, `recipe-scrapers>=15.9.0`
+- **Web**: Flask 3.0.0, `recipe-scrapers>=15.9.0`, `gunicorn>=21.0.0` (production)
 - Install: `pip3 install -r requirements.txt`
 
 ### Code Conventions

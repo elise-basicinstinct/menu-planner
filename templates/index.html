@@ -13,40 +13,42 @@
             <p class="subtitle">Generate weekly meal plans and shopping lists</p>
         </header>
 
-        <!-- Recipe Import Section -->
-        <div class="import-section">
-            <h2>📥 Import Recipes from URLs</h2>
-            <p class="help-text">Add recipes from the web to use in your meal plan (optional)</p>
-
-            <div class="url-input-group">
-                <input type="url" id="recipeUrl" placeholder="https://example.com/recipe" class="url-input">
-                <button type="button" id="importBtn" class="btn-secondary">Import Recipe</button>
-            </div>
-
-            <p class="supported-sites">✓ Supported sites: AllRecipes, BBC Good Food, Food Network, Serious Eats, Simply Recipes, and 500+ others. <span class="not-supported">✗ Not supported: Australian sites (Coles, taste.com.au, delicious.com.au)</span></p>
-
-            <div id="importedRecipes" class="imported-recipes"></div>
-        </div>
-
         <div class="form-section">
             <form id="planForm">
                 <div class="form-group">
-                    <label for="household_size">Household Size</label>
+                    <label for="household_size">👥 Household Size</label>
                     <input type="number" id="household_size" name="household_size" min="1" value="2" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="nights">Number of Nights (1-7)</label>
+                    <label for="nights">📅 Number of Nights (1-7)</label>
                     <input type="number" id="nights" name="nights" min="1" max="7" value="3" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="cooking_time_preference">Cooking Time Preference</label>
+                    <label for="cooking_time_preference">⏱️ Cooking Time Preference</label>
                     <select id="cooking_time_preference" name="cooking_time_preference" required>
                         <option value="mixed">Mixed</option>
-                        <option value="quick">Quick</option>
-                        <option value="long">Long</option>
+                        <option value="quick">Quick (≤30 min)</option>
+                        <option value="long">Long (>30 min)</option>
                     </select>
+                </div>
+
+                <div class="form-divider"></div>
+
+                <!-- Recipe Import Section (Inline) -->
+                <div class="import-section-inline">
+                    <label class="import-label">🌐 Add Specific Recipes (Optional)</label>
+                    <p class="help-text">Import recipes from the web to include in your meal plan</p>
+
+                    <div class="url-input-group">
+                        <input type="url" id="recipeUrl" placeholder="https://example.com/recipe" class="url-input">
+                        <button type="button" id="importBtn" class="btn-secondary">+ Import</button>
+                    </div>
+
+                    <div id="importedRecipes" class="imported-recipes-chips"></div>
+
+                    <p class="supported-sites-small">✓ Supports 500+ sites including AllRecipes, BBC Good Food, Food Network, Serious Eats</p>
                 </div>
 
                 <button type="submit" class="btn-primary">Generate Meal Plan</button>
@@ -72,26 +74,19 @@
             </section>
         </div>
 
-        <!-- Add to Menu Modal -->
-        <div id="addToMenuModal" class="modal hidden">
-            <div class="modal-content">
-                <h3>📋 Add to This Week's Menu?</h3>
-                <p id="addToMenuMessage"></p>
-                <div class="modal-buttons">
-                    <button id="addToMenuYes" class="btn-primary">Yes, Add to Menu</button>
-                    <button id="addToMenuNo" class="btn-secondary">No, Just Import</button>
-                </div>
-            </div>
-        </div>
-
         <!-- Save Imported Recipes Modal -->
         <div id="saveRecipesModal" class="modal hidden">
             <div class="modal-content">
-                <h3>💾 Save Permanently?</h3>
-                <p id="saveRecipesMessage"></p>
+                <h3>💾 Save Imported Recipes?</h3>
+                <p class="modal-description">Which recipes should we save permanently for future meal plans?</p>
+
+                <div id="saveRecipesList" class="save-recipes-list">
+                    <!-- Checkboxes will be inserted here by JavaScript -->
+                </div>
+
                 <div class="modal-buttons">
-                    <button id="saveRecipesYes" class="btn-primary">Yes, Save to All Recipes</button>
-                    <button id="saveRecipesNo" class="btn-secondary">No, Just Use This Week</button>
+                    <button id="saveRecipesSubmit" class="btn-primary">Save Selected</button>
+                    <button id="saveRecipesSkip" class="btn-secondary">Don't Save</button>
                 </div>
             </div>
         </div>
@@ -104,4 +99,5 @@
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 </body>
 </html>
+
 

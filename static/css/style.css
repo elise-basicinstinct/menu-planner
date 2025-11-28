@@ -277,40 +277,41 @@ header h1 {
     font-weight: 600;
 }
 
-/* Recipe Import Section */
-.import-section {
-    padding: 40px;
-    background: #fff;
-    border-bottom: 2px solid #f0f0f0;
+/* Form Divider */
+.form-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, #e0e0e0, transparent);
+    margin: 30px 0;
 }
 
-.import-section h2 {
-    color: #667eea;
-    margin-bottom: 10px;
-    font-size: 1.5em;
+/* Inline Recipe Import Section */
+.import-section-inline {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f8fafe;
+    border-radius: 12px;
+    border: 2px dashed #c5d0ff;
+}
+
+.import-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+    font-size: 1.05em;
 }
 
 .help-text {
     color: #666;
-    margin-bottom: 20px;
-    font-size: 0.95em;
+    margin-bottom: 15px;
+    font-size: 0.9em;
 }
 
-.supported-sites {
-    color: #555;
-    font-size: 0.85em;
+.supported-sites-small {
+    color: #888;
+    font-size: 0.75em;
     margin-top: 10px;
-    margin-bottom: 20px;
-    padding: 10px;
-    background: #f8f9fa;
-    border-radius: 6px;
-    border-left: 3px solid #28a745;
-}
-
-.not-supported {
-    color: #dc3545;
-    display: inline-block;
-    margin-left: 5px;
+    font-style: italic;
 }
 
 .url-input-group {
@@ -363,57 +364,78 @@ header h1 {
     transform: none;
 }
 
-.imported-recipes {
+/* Imported Recipe Chips */
+.imported-recipes-chips {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     gap: 10px;
+    margin-top: 15px;
+    min-height: 20px;
 }
 
-.imported-recipe-card {
-    background: #f0f7ff;
+.recipe-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
     border: 2px solid #667eea;
-    border-radius: 8px;
-    padding: 15px;
+    border-radius: 20px;
+    padding: 8px 12px 8px 16px;
+    font-size: 0.9em;
+    color: #333;
+    font-weight: 500;
+    transition: all 0.2s;
+    animation: chipAppear 0.3s ease;
+}
+
+@keyframes chipAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.recipe-chip:hover {
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+    transform: translateY(-1px);
+}
+
+.recipe-chip-name {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.recipe-chip-meta {
+    font-size: 0.85em;
+    color: #888;
+}
+
+.chip-remove-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+    padding: 0;
     transition: all 0.2s;
 }
 
-.imported-recipe-card:hover {
-    box-shadow: 0 3px 10px rgba(102, 126, 234, 0.2);
-}
-
-.imported-recipe-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.imported-recipe-name {
-    font-weight: 600;
-    color: #333;
-    font-size: 1.1em;
-}
-
-.remove-recipe-btn {
-    background: transparent;
-    border: none;
-    font-size: 24px;
-    color: #999;
-    cursor: pointer;
-    padding: 0 5px;
-    line-height: 1;
-    transition: color 0.2s;
-}
-
-.remove-recipe-btn:hover {
-    color: #ff4444;
-}
-
-.imported-recipe-meta {
-    display: flex;
-    gap: 15px;
-    color: #666;
-    font-size: 0.9em;
+.chip-remove-btn:hover {
+    background: #ff4444;
+    transform: scale(1.1);
 }
 
 /* Modal */
@@ -445,10 +467,57 @@ header h1 {
     font-size: 1.5em;
 }
 
+.modal-description {
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
 .modal-content p {
     color: #666;
     margin-bottom: 30px;
     line-height: 1.6;
+}
+
+/* Save Recipes List */
+.save-recipes-list {
+    margin-bottom: 25px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.save-recipe-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: background 0.2s;
+}
+
+.save-recipe-item:hover {
+    background: #e9ecef;
+}
+
+.save-recipe-item label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    flex: 1;
+}
+
+.save-recipe-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    cursor: pointer;
+    accent-color: #667eea;
+}
+
+.save-recipe-name {
+    font-weight: 500;
+    color: #333;
 }
 
 .modal-buttons {
@@ -526,4 +595,5 @@ footer code {
         font-size: 2em;
     }
 }
+
 

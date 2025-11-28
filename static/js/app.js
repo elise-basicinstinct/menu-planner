@@ -10,18 +10,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const recipeUrlInput = document.getElementById('recipeUrl');
     const importBtn = document.getElementById('importBtn');
     const importedRecipesContainer = document.getElementById('importedRecipes');
-    const addToMenuModal = document.getElementById('addToMenuModal');
-    const addToMenuMessage = document.getElementById('addToMenuMessage');
-    const addToMenuYes = document.getElementById('addToMenuYes');
-    const addToMenuNo = document.getElementById('addToMenuNo');
     const saveRecipesModal = document.getElementById('saveRecipesModal');
-    const saveRecipesMessage = document.getElementById('saveRecipesMessage');
-    const saveRecipesYes = document.getElementById('saveRecipesYes');
-    const saveRecipesNo = document.getElementById('saveRecipesNo');
+    const saveRecipesList = document.getElementById('saveRecipesList');
+    const saveRecipesSubmit = document.getElementById('saveRecipesSubmit');
+    const saveRecipesSkip = document.getElementById('saveRecipesSkip');
 
     let importedRecipes = [];
     let hasGeneratedPlan = false;
-    let currentImportedRecipe = null;
 
     // Recipe import button handler
     importBtn.addEventListener('click', async function() {
@@ -105,6 +100,14 @@ document.addEventListener('DOMContentLoaded', function() {
             // Scroll to results
             results.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
+            // Show save recipes modal if there are imported recipes
+            if (importedRecipes.length > 0) {
+                // Small delay so user can see the plan first
+                setTimeout(() => {
+                    showSaveRecipesModal();
+                }, 500);
+            }
+
         } catch (error) {
             loading.classList.add('hidden');
             alert('Error: ' + error.message);
@@ -185,14 +188,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 throw new Error(data.error || 'Failed to import recipe');
             }
 
-            // Store the current imported recipe
-            currentImportedRecipe = data.recipe;
-
             // Add to imported recipes list
             importedRecipes.push(data.recipe);
 
-            // Display the imported recipe
-            displayImportedRecipe(data.recipe);
+            // Display the imported recipe as a chip
+            displayImportedRecipeChip(data.recipe);
 
             // Clear the input
             recipeUrlInput.value = '';
@@ -200,36 +200,27 @@ document.addEventListener('DOMContentLoaded', function() {
             // Show success message
             showToast(`✓ Imported: ${data.recipe.name}`, 'success');
 
-            // Ask if they want to add to this week's menu
-            showAddToMenuModal(data.recipe);
-
         } catch (error) {
             showToast(`✗ ${error.message}`, 'error');
         } finally {
             // Re-enable button
             importBtn.disabled = false;
-            importBtn.textContent = 'Import Recipe';
+            importBtn.textContent = '+ Import';
         }
     }
 
-    function displayImportedRecipe(recipe) {
-        const recipeCard = document.createElement('div');
-        recipeCard.className = 'imported-recipe-card';
-        recipeCard.dataset.recipeId = recipe.id;
+    function displayImportedRecipeChip(recipe) {
+        const chip = document.createElement('div');
+        chip.className = 'recipe-chip';
+        chip.dataset.recipeId = recipe.id;
 
-        recipeCard.innerHTML = `
-            <div class="imported-recipe-header">
-                <span class="imported-recipe-name">✓ ${recipe.name}</span>
-                <button class="remove-recipe-btn" onclick="removeImportedRecipe(${recipe.id})">×</button>
-            </div>
-            <div class="imported-recipe-meta">
-                <span>⏱️ ${recipe.cooking_time}</span>
-                <span>👥 ${recipe.servings} servings</span>
-                <span>🥘 ${recipe.ingredients.length} ingredients</span>
-            </div>
+        chip.innerHTML = `
+            <span class="recipe-chip-name">${recipe.name}</span>
+            <span class="recipe-chip-meta">(${recipe.cooking_time})</span>
+            <button class="chip-remove-btn" onclick="removeImportedRecipe(${recipe.id})">×</button>
         `;
 
-        importedRecipesContainer.appendChild(recipeCard);
+        importedRecipesContainer.appendChild(chip);
     }
 
     // Make removeImportedRecipe available globally
@@ -238,115 +229,48 @@ document.addEventListener('DOMContentLoaded', function() {
         importedRecipes = importedRecipes.filter(r => r.id !== recipeId);
 
         // Remove from DOM
-        const card = document.querySelector(`[data-recipe-id="${recipeId}"]`);
-        if (card) {
-            card.remove();
-        }
-
-        // If no more imported recipes, clear the container
-        if (importedRecipes.length === 0) {
-            importedRecipesContainer.innerHTML = '';
+        const chip = document.querySelector(`[data-recipe-id="${recipeId}"]`);
+        if (chip) {
+            chip.remove();
         }
     };
 
-    function showAddToMenuModal(recipe) {
-        addToMenuMessage.textContent = `Would you like to add "${recipe.name}" to this week's meal plan?`;
-        addToMenuModal.classList.remove('hidden');
-    }
+    function showSaveRecipesModal() {
+        if (importedRecipes.length === 0) {
+            return;
+        }
 
-    function showSaveRecipesModal(recipe) {
-        saveRecipesMessage.textContent = `Would you like to save "${recipe.name}" permanently to your recipe collection?`;
+        // Clear previous list
+        saveRecipesList.innerHTML = '';
+
+        // Add checkbox for each imported recipe
+        importedRecipes.forEach(recipe => {
+            const item = document.createElement('div');
+            item.className = 'save-recipe-item';
+            item.innerHTML = `
+                <label>
+                    <input type="checkbox" checked data-recipe-id="${recipe.id}">
+                    <span class="save-recipe-name">${recipe.name}</span>
+                </label>
+            `;
+            saveRecipesList.appendChild(item);
+        });
+
         saveRecipesModal.classList.remove('hidden');
     }
 
-    addToMenuYes.addEventListener('click', async function() {
-        // Hide the add to menu modal
-        addToMenuModal.classList.add('hidden');
+    saveRecipesSubmit.addEventListener('click', async function() {
+        // Get selected recipe IDs
+        const checkboxes = saveRecipesList.querySelectorAll('input[type="checkbox"]:checked');
+        const selectedIds = Array.from(checkboxes).map(cb => parseInt(cb.dataset.recipeId));
 
-        // Auto-generate a plan with the imported recipe
-        // Set nights to 1 if not already set
-        const nightsInput = document.getElementById('nights');
-        if (!nightsInput.value || nightsInput.value == '0') {
-            nightsInput.value = '1';
+        if (selectedIds.length === 0) {
+            showToast('✓ No recipes saved', 'info');
+            saveRecipesModal.classList.add('hidden');
+            clearImportedRecipes();
+            return;
         }
 
-        // Automatically trigger plan generation
-        await generatePlanWithImportedRecipe();
-
-        // Then ask if they want to save it permanently
-        showSaveRecipesModal(currentImportedRecipe);
-    });
-
-    async function generatePlanWithImportedRecipe() {
-        // Show loading
-        loading.classList.remove('hidden');
-        results.classList.add('hidden');
-
-        // Get form data
-        const formData = {
-            household_size: parseInt(document.getElementById('household_size').value),
-            nights: parseInt(document.getElementById('nights').value),
-            cooking_time_preference: document.getElementById('cooking_time_preference').value
-        };
-
-        try {
-            // Make API request
-            const response = await fetch('/api/generate-plan', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            });
-
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.error || 'Failed to generate plan');
-            }
-
-            // Hide loading
-            loading.classList.add('hidden');
-
-            // Display warnings if any
-            if (data.warnings && data.warnings.length > 0) {
-                warnings.innerHTML = data.warnings.map(w => `<p>⚠️ ${w}</p>`).join('');
-                warnings.classList.remove('hidden');
-            }
-
-            // Display menu
-            displayMenu(data.menu);
-
-            // Display shopping list
-            displayShoppingList(data.shopping_list);
-
-            // Show results
-            results.classList.remove('hidden');
-
-            // Mark that plan has been generated
-            hasGeneratedPlan = true;
-
-            // Show success toast
-            showToast('✓ Menu plan generated with your imported recipe!', 'success');
-
-            // Scroll to results
-            results.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-        } catch (error) {
-            loading.classList.add('hidden');
-            showToast(`✗ ${error.message}`, 'error');
-        }
-    }
-
-    addToMenuNo.addEventListener('click', function() {
-        // Hide the add to menu modal
-        addToMenuModal.classList.add('hidden');
-
-        // Still ask if they want to save it permanently
-        showSaveRecipesModal(currentImportedRecipe);
-    });
-
-    saveRecipesYes.addEventListener('click', async function() {
         try {
             const response = await fetch('/api/save-temp-recipes', {
                 method: 'POST',
@@ -361,23 +285,34 @@ document.addEventListener('DOMContentLoaded', function() {
                 throw new Error(data.error || 'Failed to save recipes');
             }
 
-            showToast(`✓ Saved to all recipes permanently`, 'success');
+            showToast(`✓ Saved ${selectedIds.length} recipe(s) permanently`, 'success');
 
             // Hide modal
             saveRecipesModal.classList.add('hidden');
+
+            // Clear imported recipes
+            clearImportedRecipes();
 
         } catch (error) {
             showToast(`✗ ${error.message}`, 'error');
         }
     });
 
-    saveRecipesNo.addEventListener('click', function() {
-        // Don't save permanently, but keep it for this week's menu
-        showToast('✓ Recipe available for this week only', 'info');
+    saveRecipesSkip.addEventListener('click', function() {
+        // Don't save permanently
+        showToast('✓ Recipes not saved', 'info');
 
         // Hide modal
         saveRecipesModal.classList.add('hidden');
+
+        // Clear imported recipes
+        clearImportedRecipes();
     });
+
+    function clearImportedRecipes() {
+        importedRecipes = [];
+        importedRecipesContainer.innerHTML = '';
+    }
 
     function showToast(message, type = 'info') {
         // Create toast element
