@@ -270,11 +270,73 @@ document.addEventListener('DOMContentLoaded', function() {
             nightsInput.value = '1';
         }
 
-        showToast('✓ Recipe will be included in your next meal plan', 'success');
+        // Automatically trigger plan generation
+        await generatePlanWithImportedRecipe();
 
         // Then ask if they want to save it permanently
         showSaveRecipesModal(currentImportedRecipe);
     });
+
+    async function generatePlanWithImportedRecipe() {
+        // Show loading
+        loading.classList.remove('hidden');
+        results.classList.add('hidden');
+
+        // Get form data
+        const formData = {
+            household_size: parseInt(document.getElementById('household_size').value),
+            nights: parseInt(document.getElementById('nights').value),
+            cooking_time_preference: document.getElementById('cooking_time_preference').value
+        };
+
+        try {
+            // Make API request
+            const response = await fetch('/api/generate-plan', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Failed to generate plan');
+            }
+
+            // Hide loading
+            loading.classList.add('hidden');
+
+            // Display warnings if any
+            if (data.warnings && data.warnings.length > 0) {
+                warnings.innerHTML = data.warnings.map(w => `<p>⚠️ ${w}</p>`).join('');
+                warnings.classList.remove('hidden');
+            }
+
+            // Display menu
+            displayMenu(data.menu);
+
+            // Display shopping list
+            displayShoppingList(data.shopping_list);
+
+            // Show results
+            results.classList.remove('hidden');
+
+            // Mark that plan has been generated
+            hasGeneratedPlan = true;
+
+            // Show success toast
+            showToast('✓ Menu plan generated with your imported recipe!', 'success');
+
+            // Scroll to results
+            results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        } catch (error) {
+            loading.classList.add('hidden');
+            showToast(`✗ ${error.message}`, 'error');
+        }
+    }
 
     addToMenuNo.addEventListener('click', function() {
         // Hide the add to menu modal
@@ -336,4 +398,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     }
 });
+
 
