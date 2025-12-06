@@ -6,6 +6,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuContent = document.getElementById('menuContent');
     const shoppingContent = document.getElementById('shoppingContent');
 
+    // Recipe selection tabs
+    const myRecipesTab = document.getElementById('myRecipesTab');
+    const importUrlTab = document.getElementById('importUrlTab');
+    const myRecipesSection = document.getElementById('myRecipesSection');
+    const importUrlSection = document.getElementById('importUrlSection');
+    const myRecipesDropdown = document.getElementById('myRecipesDropdown');
+    const addFromLibraryBtn = document.getElementById('addFromLibraryBtn');
+
     // Recipe import elements
     const recipeUrlInput = document.getElementById('recipeUrl');
     const importBtn = document.getElementById('importBtn');
@@ -17,6 +25,49 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let importedRecipes = [];
     let hasGeneratedPlan = false;
+    let libraryRecipes = [];
+
+    // Load recipes from library
+    loadLibraryRecipes();
+
+    // Tab switching
+    myRecipesTab.addEventListener('click', function() {
+        myRecipesTab.classList.add('active');
+        importUrlTab.classList.remove('active');
+        myRecipesSection.classList.remove('hidden');
+        importUrlSection.classList.add('hidden');
+    });
+
+    importUrlTab.addEventListener('click', function() {
+        importUrlTab.classList.add('active');
+        myRecipesTab.classList.remove('active');
+        importUrlSection.classList.remove('hidden');
+        myRecipesSection.classList.add('hidden');
+    });
+
+    // Add recipes from library
+    addFromLibraryBtn.addEventListener('click', function() {
+        const selectedOptions = Array.from(myRecipesDropdown.selectedOptions);
+
+        if (selectedOptions.length === 0) {
+            showToast('Please select at least one recipe', 'info');
+            return;
+        }
+
+        selectedOptions.forEach(option => {
+            const recipeId = parseInt(option.value);
+            const recipe = libraryRecipes.find(r => r.id === recipeId);
+
+            if (recipe && !importedRecipes.find(r => r.id === recipeId)) {
+                importedRecipes.push(recipe);
+                displayImportedRecipeChip(recipe);
+            }
+        });
+
+        // Clear selection
+        myRecipesDropdown.selectedIndex = -1;
+        showToast(`Added ${selectedOptions.length} recipe(s) to your meal plan`, 'success');
+    });
 
     // Recipe import button handler
     importBtn.addEventListener('click', async function() {
@@ -312,6 +363,43 @@ document.addEventListener('DOMContentLoaded', function() {
     function clearImportedRecipes() {
         importedRecipes = [];
         importedRecipesContainer.innerHTML = '';
+    }
+
+    async function loadLibraryRecipes() {
+        try {
+            const response = await fetch('/api/recipes');
+
+            if (!response.ok) {
+                throw new Error('Failed to load recipes');
+            }
+
+            libraryRecipes = await response.json();
+
+            // Populate dropdown
+            myRecipesDropdown.innerHTML = '';
+
+            if (libraryRecipes.length === 0) {
+                const option = document.createElement('option');
+                option.value = '';
+                option.disabled = true;
+                option.textContent = 'No recipes in library yet';
+                myRecipesDropdown.appendChild(option);
+            } else {
+                libraryRecipes.forEach(recipe => {
+                    const option = document.createElement('option');
+                    option.value = recipe.id;
+
+                    // Format: Recipe Name (Quick/Long, X servings)
+                    const cookingTimeLabel = recipe.cooking_time === 'quick' ? 'Quick' : 'Long';
+                    option.textContent = `${recipe.name} (${cookingTimeLabel}, ${recipe.servings} servings)`;
+
+                    myRecipesDropdown.appendChild(option);
+                });
+            }
+        } catch (error) {
+            console.error('Error loading library recipes:', error);
+            myRecipesDropdown.innerHTML = '<option value="" disabled>Error loading recipes</option>';
+        }
     }
 
     function showToast(message, type = 'info') {

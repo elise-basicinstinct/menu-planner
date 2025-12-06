@@ -3,31 +3,31 @@
     "id": 1,
     "name": "Spaghetti Carbonara",
     "cooking_time": "quick",
-    "servings": 4,
+    "servings": 2,
     "ingredients": [
       {
         "name": "spaghetti",
-        "amount": 400,
+        "amount": 200.0,
         "unit": "g"
       },
       {
         "name": "bacon",
-        "amount": 200,
+        "amount": 100.0,
         "unit": "g"
       },
       {
         "name": "eggs",
-        "amount": 4,
+        "amount": 2.0,
         "unit": "pcs"
       },
       {
         "name": "parmesan cheese",
-        "amount": 100,
+        "amount": 50.0,
         "unit": "g"
       },
       {
         "name": "garlic",
-        "amount": 2,
+        "amount": 1.0,
         "unit": "cloves"
       }
     ],
@@ -46,36 +46,36 @@
     "id": 2,
     "name": "Chicken Stir-fry",
     "cooking_time": "quick",
-    "servings": 4,
+    "servings": 2,
     "ingredients": [
       {
         "name": "chicken breast",
-        "amount": 500,
+        "amount": 250.0,
         "unit": "g"
       },
       {
         "name": "mixed vegetables",
-        "amount": 400,
+        "amount": 200.0,
         "unit": "g"
       },
       {
         "name": "soy sauce",
-        "amount": 60,
+        "amount": 30.0,
         "unit": "ml"
       },
       {
         "name": "rice",
-        "amount": 300,
+        "amount": 150.0,
         "unit": "g"
       },
       {
         "name": "ginger",
-        "amount": 20,
+        "amount": 10.0,
         "unit": "g"
       },
       {
         "name": "garlic",
-        "amount": 3,
+        "amount": 1.5,
         "unit": "cloves"
       }
     ],
@@ -95,36 +95,36 @@
     "id": 3,
     "name": "Beef Stew",
     "cooking_time": "long",
-    "servings": 6,
+    "servings": 2,
     "ingredients": [
       {
         "name": "beef chuck",
-        "amount": 800,
+        "amount": 266.7,
         "unit": "g"
       },
       {
         "name": "carrots",
-        "amount": 400,
+        "amount": 133.3,
         "unit": "g"
       },
       {
         "name": "potatoes",
-        "amount": 600,
+        "amount": 200.0,
         "unit": "g"
       },
       {
         "name": "onions",
-        "amount": 300,
+        "amount": 100.0,
         "unit": "g"
       },
       {
         "name": "beef stock",
-        "amount": 500,
+        "amount": 166.7,
         "unit": "ml"
       },
       {
         "name": "tomato paste",
-        "amount": 50,
+        "amount": 16.7,
         "unit": "g"
       }
     ],
@@ -144,31 +144,31 @@
     "id": 4,
     "name": "Vegetable Curry",
     "cooking_time": "quick",
-    "servings": 4,
+    "servings": 2,
     "ingredients": [
       {
         "name": "mixed vegetables",
-        "amount": 600,
+        "amount": 300.0,
         "unit": "g"
       },
       {
         "name": "coconut milk",
-        "amount": 400,
+        "amount": 200.0,
         "unit": "ml"
       },
       {
         "name": "curry paste",
-        "amount": 50,
+        "amount": 25.0,
         "unit": "g"
       },
       {
         "name": "rice",
-        "amount": 300,
+        "amount": 150.0,
         "unit": "g"
       },
       {
         "name": "onions",
-        "amount": 200,
+        "amount": 100.0,
         "unit": "g"
       }
     ],
@@ -187,36 +187,36 @@
     "id": 5,
     "name": "Lasagna",
     "cooking_time": "long",
-    "servings": 6,
+    "servings": 2,
     "ingredients": [
       {
         "name": "lasagna sheets",
-        "amount": 250,
+        "amount": 83.3,
         "unit": "g"
       },
       {
         "name": "ground beef",
-        "amount": 500,
+        "amount": 166.7,
         "unit": "g"
       },
       {
         "name": "tomato sauce",
-        "amount": 400,
+        "amount": 133.3,
         "unit": "g"
       },
       {
         "name": "mozzarella cheese",
-        "amount": 300,
+        "amount": 100.0,
         "unit": "g"
       },
       {
         "name": "onions",
-        "amount": 150,
+        "amount": 50.0,
         "unit": "g"
       },
       {
         "name": "garlic",
-        "amount": 3,
+        "amount": 1.0,
         "unit": "cloves"
       }
     ],
@@ -236,31 +236,31 @@
     "id": 6,
     "name": "Fish Tacos",
     "cooking_time": "quick",
-    "servings": 4,
+    "servings": 2,
     "ingredients": [
       {
         "name": "white fish fillets",
-        "amount": 500,
+        "amount": 250.0,
         "unit": "g"
       },
       {
         "name": "tortillas",
-        "amount": 8,
+        "amount": 4.0,
         "unit": "pcs"
       },
       {
         "name": "cabbage",
-        "amount": 200,
+        "amount": 100.0,
         "unit": "g"
       },
       {
         "name": "lime",
-        "amount": 2,
+        "amount": 1.0,
         "unit": "pcs"
       },
       {
         "name": "sour cream",
-        "amount": 150,
+        "amount": 75.0,
         "unit": "ml"
       }
     ],
@@ -279,31 +279,31 @@
     "id": 7,
     "name": "Roast Chicken Dinner",
     "cooking_time": "long",
-    "servings": 5,
+    "servings": 2,
     "ingredients": [
       {
         "name": "whole chicken",
-        "amount": 1500,
+        "amount": 600.0,
         "unit": "g"
       },
       {
         "name": "potatoes",
-        "amount": 800,
+        "amount": 320.0,
         "unit": "g"
       },
       {
         "name": "carrots",
-        "amount": 400,
+        "amount": 160.0,
         "unit": "g"
       },
       {
         "name": "onions",
-        "amount": 200,
+        "amount": 80.0,
         "unit": "g"
       },
       {
         "name": "olive oil",
-        "amount": 50,
+        "amount": 20.0,
         "unit": "ml"
       }
     ],
@@ -323,36 +323,36 @@
     "id": 8,
     "name": "Mushroom Risotto",
     "cooking_time": "long",
-    "servings": 4,
+    "servings": 2,
     "ingredients": [
       {
         "name": "arborio rice",
-        "amount": 300,
+        "amount": 150.0,
         "unit": "g"
       },
       {
         "name": "mushrooms",
-        "amount": 400,
+        "amount": 200.0,
         "unit": "g"
       },
       {
         "name": "vegetable stock",
-        "amount": 1000,
+        "amount": 500.0,
         "unit": "ml"
       },
       {
         "name": "parmesan cheese",
-        "amount": 100,
+        "amount": 50.0,
         "unit": "g"
       },
       {
         "name": "onions",
-        "amount": 100,
+        "amount": 50.0,
         "unit": "g"
       },
       {
         "name": "white wine",
-        "amount": 150,
+        "amount": 75.0,
         "unit": "ml"
       }
     ],
@@ -372,31 +372,31 @@
     "id": 9,
     "name": "Quesadillas",
     "cooking_time": "quick",
-    "servings": 4,
+    "servings": 2,
     "ingredients": [
       {
         "name": "tortillas",
-        "amount": 8,
+        "amount": 4.0,
         "unit": "pcs"
       },
       {
         "name": "cheddar cheese",
-        "amount": 300,
+        "amount": 150.0,
         "unit": "g"
       },
       {
         "name": "bell peppers",
-        "amount": 200,
+        "amount": 100.0,
         "unit": "g"
       },
       {
         "name": "onions",
-        "amount": 100,
+        "amount": 50.0,
         "unit": "g"
       },
       {
         "name": "black beans",
-        "amount": 200,
+        "amount": 100.0,
         "unit": "g"
       }
     ],
@@ -416,36 +416,36 @@
     "id": 10,
     "name": "Thai Green Curry",
     "cooking_time": "quick",
-    "servings": 4,
+    "servings": 2,
     "ingredients": [
       {
         "name": "chicken breast",
-        "amount": 500,
+        "amount": 250.0,
         "unit": "g"
       },
       {
         "name": "coconut milk",
-        "amount": 400,
+        "amount": 200.0,
         "unit": "ml"
       },
       {
         "name": "green curry paste",
-        "amount": 50,
+        "amount": 25.0,
         "unit": "g"
       },
       {
         "name": "rice",
-        "amount": 300,
+        "amount": 150.0,
         "unit": "g"
       },
       {
         "name": "bamboo shoots",
-        "amount": 200,
+        "amount": 100.0,
         "unit": "g"
       },
       {
         "name": "Thai basil",
-        "amount": 30,
+        "amount": 15.0,
         "unit": "g"
       }
     ],
@@ -462,193 +462,89 @@
     ]
   },
   {
-    "id": 11,
-    "name": "Pecan Pie Cheesecake",
-    "cooking_time": "long",
-    "servings": 12,
-    "ingredients": [
-      {
-        "name": "spray",
-        "amount": 1.0,
-        "unit": "Cooking"
-      },
-      {
-        "name": "graham cracker crumbs (8 ounces; about 2 cups)",
-        "amount": 227.0,
-        "unit": "g"
-      },
-      {
-        "name": "finely chopped toasted pecans (2 ounces; 1/2 cup)",
-        "amount": 57.0,
-        "unit": "g"
-      },
-      {
-        "name": "unsalted butter (113 g), melted, divided",
-        "amount": 8.0,
-        "unit": "tablespoons"
-      },
-      {
-        "name": "(3 3/4 ounces; 1/2 cup), plus 42 g (about 1 1/2 ounces; 3 tablespoons) dark brown sugar, divided",
-        "amount": 107.0,
-        "unit": "g"
-      },
-      {
-        "name": "Diamond Crystal kosher salt, divided; for table salt, use half as much by volume",
-        "amount": 1.25,
-        "unit": "teaspoon"
-      },
-      {
-        "name": "(907 g) cream cheese, softened",
-        "amount": 2.0,
-        "unit": "pounds"
-      },
-      {
-        "name": "granulated sugar (7 ounces; 1 cup)",
-        "amount": 198.0,
-        "unit": "g"
-      },
-      {
-        "name": "eggs, at room temperature",
-        "amount": 4.0,
-        "unit": "large"
-      },
-      {
-        "name": "(120 ml) sour cream",
-        "amount": 0.5,
-        "unit": "cup"
-      },
-      {
-        "name": "(15 ml) vanilla extract",
-        "amount": 1.0,
-        "unit": "tablespoon"
-      },
-      {
-        "name": "dark brown sugar (3 3/4 ounces; 1/2 cup)",
-        "amount": 107.0,
-        "unit": "g"
-      },
-      {
-        "name": "(90 ml) heavy cream",
-        "amount": 6.0,
-        "unit": "tablespoons"
-      },
-      {
-        "name": "(57 g) butter, melted",
-        "amount": 4.0,
-        "unit": "tablespoons"
-      },
-      {
-        "name": "(15 ml) light corn syrup",
-        "amount": 1.0,
-        "unit": "tablespoon"
-      },
-      {
-        "name": "Diamond Crystal kosher salt, divided; for table salt, use half as much by volume",
-        "amount": 0.25,
-        "unit": "teaspoons"
-      },
-      {
-        "name": "pecans (5 3/4 ounce; 1 1/2 cups), toasted and roughly chopped",
-        "amount": 162.0,
-        "unit": "g"
-      }
-    ],
-    "steps": [
-      "For the Cheesecake: Adjust oven rack to middle position and preheat oven to 350\u00b0F (175\u00b0C). Lightly grease a 9-inch springform pan with cooking spray. Using aluminum foil, wrap bottom half of pan to create a waterproof seal.",
-      "For the Crust: In a medium bowl, stir together graham cracker crumbs, pecans, melted butter, 42 g (about 1 1/2 ounces; 3 tablespoons) brown sugar, and 1/2 teaspoon kosher salt until well combined. Firmly press mixture into bottom and 1 1/2 to 2 inches up the sides of prepared springform pan. Bake until lightly browned, about 10 minutes. Transfer springform pan to a wire rack to cool completely, about 30 minutes. Reduce oven temperature to 325\u00b0F (165\u00b0C).",
-      "After crust has cooled, in a large bowl with a hand mixer, or in the bowl of a stand mixer fitted with paddle attachment, beat cream cheese on medium speed until smooth, about 1 minute. Add granulated sugar and 1/2 cup (3 3/4 ounces; 107 g) brown sugar. Beat on medium-high speed until combined and smooth, about 1 minute. Add eggs, one at a time, beating on low speed until just combined after each addition, stopping to scrape sides of bowl as needed. Add sour cream, vanilla, and remaining 3/4 teaspoon kosher salt. Beat on low speed until just combined, about 1 minute, stopping to scrape down sides of bowl as needed. Set aside.",
-      "Pour cheesecake filling into cooled crust, gently smoothing top into an even layer using a small offset spatula or flexible rubber spatula. Set springform pan in a roasting pan. Place roasting pan in oven and fill with about 2 inches hot water.",
-      "Bake until the center of cheesecake jiggles slightly when shaken, about 1 1/2 hours. Turn oven off, leave oven door ajar by about 4 inches, and let cheesecake cool inside oven for 1 hour. Transfer cheesecake to wire rack and allow to cool completely, about 1 hour. Refrigerate, uncovered, until fully chilled and set, at least 6 hours or up to 24 hours.",
-      "For the Pecan Caramel: After cheesecake has cooled, in a medium saucepan, bring sugar, cream, melted butter, corn syrup, and 1/4 teaspoon kosher salt to a simmer over medium heat, whisking occasionally. Once simmering, stop whisking, and continue to simmer, undisturbed, over medium heat, until mixture becomes slightly darker and a candy thermometer registers 224\u00b0F (106\u00b0C), about 2 minutes. Immediately remove from heat and use a flexible rubber spatula or wooden spoon to stir in pecans until coated. Let cool to room temperature, stirring occasionally, about 30 minutes.",
-      "Carefully remove cheesecake from springform pan and transfer to serving plate. Spoon cooled pecan pie topping over cheesecake. Slice and serve."
-    ],
-    "source_url": "https://www.seriouseats.com/pecan-pie-cheesecake-recipe-11843450",
-    "image_url": "https://www.seriouseats.com/thmb/NjsQ8cXSW-VzB0vdyxLZqOm1PnU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/20251104-SEA-PecanPieCheesecake-MorganHuntWard-HERO-57556144376c4b43b5ce8d9926a5f5bc.jpg"
-  },
-  {
     "id": 12,
     "name": "Chilli con carne recipe",
     "cooking_time": "long",
-    "servings": 4,
+    "servings": 2,
     "ingredients": [
       {
         "name": "onion",
-        "amount": 1.0,
+        "amount": 0.5,
         "unit": "large"
       },
       {
         "name": "pepper",
-        "amount": 1.0,
+        "amount": 0.5,
         "unit": "red"
       },
       {
         "name": "cloves",
-        "amount": 2.0,
+        "amount": 1.0,
         "unit": "garlic"
       },
       {
         "name": "oil",
-        "amount": 1.0,
-        "unit": "tbsp"
+        "amount": 7.5,
+        "unit": "ml"
       },
       {
         "name": "tsp hot chilli powder (or 1 level tbsp if you only have mild)",
-        "amount": 1.0,
+        "amount": 0.5,
         "unit": "heaped"
       },
       {
         "name": "paprika",
-        "amount": 1.0,
-        "unit": "tsp"
+        "amount": 2.5,
+        "unit": "ml"
       },
       {
         "name": "ground cumin",
-        "amount": 1.0,
-        "unit": "tsp"
+        "amount": 2.5,
+        "unit": "ml"
       },
       {
         "name": "lean minced beef",
-        "amount": 500.0,
+        "amount": 250.0,
         "unit": "g"
       },
       {
         "name": "stock cube",
-        "amount": 1.0,
+        "amount": 0.5,
         "unit": "beef"
       },
       {
         "name": "can chopped tomatoes",
-        "amount": 400.0,
+        "amount": 200.0,
         "unit": "g"
       },
       {
         "name": "\u00bd tsp dried marjoram",
-        "amount": 1.0,
+        "amount": 0.5,
         "unit": "pcs"
       },
       {
         "name": "sugar (or add a thumbnail-sized piece of dark chocolate along with the beans instead, see tip)",
-        "amount": 1.0,
-        "unit": "tsp"
+        "amount": 2.5,
+        "unit": "ml"
       },
       {
         "name": "tomato pur\u00e9e",
-        "amount": 2.0,
-        "unit": "tbsp"
+        "amount": 15.0,
+        "unit": "ml"
       },
       {
         "name": "can red kidney beans",
-        "amount": 410.0,
+        "amount": 205.0,
         "unit": "g"
       },
       {
         "name": "boiled long grain rice to serve",
-        "amount": 1.0,
+        "amount": 0.5,
         "unit": "plain"
       },
       {
         "name": "cream to serve",
-        "amount": 1.0,
+        "amount": 0.5,
         "unit": "soured"
       }
     ],
@@ -677,51 +573,51 @@
     "id": 13,
     "name": "Creamy One Pot Pasta with Zucchini",
     "cooking_time": "quick",
-    "servings": 8,
+    "servings": 2,
     "ingredients": [
       {
         "name": "olive oil",
-        "amount": 0.25,
-        "unit": "cup"
+        "amount": 15.0,
+        "unit": "ml"
       },
       {
         "name": "or 5 medium zucchini (2 pounds), coarsely grated",
-        "amount": 4.0,
+        "amount": 1.0,
         "unit": "large"
       },
       {
         "name": "kosher salt, divided, plus more to taste",
-        "amount": 2.5,
-        "unit": "teaspoons"
+        "amount": 3.1,
+        "unit": "ml"
       },
       {
         "name": "freshly ground black pepper, plus more to taste",
-        "amount": 0.5,
-        "unit": "teaspoon"
+        "amount": 0.6,
+        "unit": "ml"
       },
       {
         "name": "water",
-        "amount": 3.25,
-        "unit": "cups"
+        "amount": 195.0,
+        "unit": "ml"
       },
       {
         "name": "dry rigatoni or penne pasta",
-        "amount": 1.0,
-        "unit": "pound"
+        "amount": 113.5,
+        "unit": "g"
       },
       {
         "name": "cream cheese, softened",
-        "amount": 6.0,
-        "unit": "ounces"
+        "amount": 45.0,
+        "unit": "ml"
       },
       {
         "name": "lemon, zested and juiced (about 2 tablespoons juice)",
-        "amount": 1.0,
+        "amount": 0.2,
         "unit": "pcs"
       },
       {
         "name": "toasted walnuts",
-        "amount": 0.25,
+        "amount": 0.1,
         "unit": "chopped"
       }
     ],
@@ -732,5 +628,94 @@
     ],
     "source_url": "https://www.simplyrecipes.com/creamy-one-pot-pasta-with-zucchini-recipe-5498699",
     "image_url": "https://www.simplyrecipes.com/thmb/ZZ_kzcQ92_6BqbngVh0_UNfqzSY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Simply-Recipes-Creamy-One-Pot-Pasta-with-Zucchini-LEAD-8-98d788600d4e4344a02785ad486aeba8.jpg"
+  },
+  {
+    "id": 14,
+    "name": "Easy chicken fajitas",
+    "cooking_time": "quick",
+    "servings": 2,
+    "ingredients": [
+      {
+        "name": "breasts finely sliced",
+        "amount": 1.0,
+        "unit": "chicken"
+      },
+      {
+        "name": "onion finely sliced",
+        "amount": 0.5,
+        "unit": "red"
+      },
+      {
+        "name": "pepper sliced",
+        "amount": 0.5,
+        "unit": "red"
+      },
+      {
+        "name": "chilli finely sliced (optional)",
+        "amount": 0.5,
+        "unit": "red"
+      },
+      {
+        "name": "smoked paprika",
+        "amount": 7.5,
+        "unit": "ml"
+      },
+      {
+        "name": "ground coriander",
+        "amount": 7.5,
+        "unit": "ml"
+      },
+      {
+        "name": "cumin",
+        "amount": 0.5,
+        "unit": "ground"
+      },
+      {
+        "name": "cloves crushed",
+        "amount": 1.0,
+        "unit": "garlic"
+      },
+      {
+        "name": "olive oil",
+        "amount": 30.0,
+        "unit": "ml"
+      },
+      {
+        "name": "juiced",
+        "amount": 0.5,
+        "unit": "lime"
+      },
+      {
+        "name": "Tabasco",
+        "amount": 0.5,
+        "unit": "pcs"
+      },
+      {
+        "name": "tortillas",
+        "amount": 4.0,
+        "unit": "pcs"
+      },
+      {
+        "name": "salad",
+        "amount": 0.5,
+        "unit": "mixed"
+      },
+      {
+        "name": "fresh salsa",
+        "amount": 115.0,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Heat oven to 200C/180C fan/gas 6 and wrap 8 medium tortillas in foil.",
+      "Mix 1 heaped tbsp smoked paprika, 1 tbsp ground coriander, a pinch of ground cumin, 2 crushed garlic cloves, 4 tbsp olive oil, the juice of 1 lime and 4-5 drops Tabasco together in a bowl with a big pinch each of salt and pepper.",
+      "Stir 2 finely sliced chicken breasts, 1 finely sliced red onion, 1 sliced red pepper and 1 finely sliced red chilli, if using, into the marinade.",
+      "Heat a griddle pan until smoking hot and add the chicken and marinade to the pan.",
+      "Keep everything moving over a high heat for about 5 mins using tongs until you get a nice charred effect. If your griddle pan is small you may need to do this in two batches.",
+      "To check the chicken is cooked, find the thickest part and tear in half \u2013 if any part is still raw cook until done.",
+      "Put the tortillas in the oven to heat up and serve with the cooked chicken, a bag of mixed salad and one 230g tub of fresh salsa."
+    ],
+    "source_url": "https://www.bbcgoodfood.com/recipes/easy-chicken-fajitas",
+    "image_url": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chicken-fajitas-2-d7172f8.jpg?resize=440,400"
   }
 ]

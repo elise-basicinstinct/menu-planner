@@ -293,9 +293,64 @@ def validate_recipe_schema(recipe: Dict[str, Any]) -> None:
         raise RecipeValidationError("servings must be a positive number")
 
 
+# Imperial to metric conversions
+IMPERIAL_TO_METRIC = {
+    # Volume
+    "cup": ("ml", 240),
+    "cups": ("ml", 240),
+    "tablespoon": ("ml", 15),
+    "tablespoons": ("ml", 15),
+    "tbsp": ("ml", 15),
+    "teaspoon": ("ml", 5),
+    "teaspoons": ("ml", 5),
+    "tsp": ("ml", 5),
+    "fluid ounce": ("ml", 30),
+    "fluid ounces": ("ml", 30),
+    "fl oz": ("ml", 30),
+    "ounce": ("ml", 30),
+    "ounces": ("ml", 30),
+    "oz": ("ml", 30),
+    "pint": ("ml", 473),
+    "pints": ("ml", 473),
+    "quart": ("ml", 946),
+    "quarts": ("ml", 946),
+    "gallon": ("ml", 3785),
+    "gallons": ("ml", 3785),
+
+    # Weight
+    "pound": ("g", 454),
+    "pounds": ("g", 454),
+    "lb": ("g", 454),
+    "lbs": ("g", 454),
+}
+
+
+def convert_to_metric(amount: float, unit: str) -> tuple:
+    """
+    Convert imperial units to metric.
+
+    Args:
+        amount: Amount in imperial units
+        unit: Unit name
+
+    Returns:
+        Tuple of (new_amount, new_unit)
+    """
+    unit_lower = unit.lower().strip()
+
+    if unit_lower in IMPERIAL_TO_METRIC:
+        new_unit, conversion_factor = IMPERIAL_TO_METRIC[unit_lower]
+        new_amount = round(amount * conversion_factor, 1)
+        return new_amount, new_unit
+
+    # Already metric or unit like "pcs", "cloves", etc.
+    return amount, unit
+
+
 def normalize_recipe(raw_recipe: Dict[str, Any], recipe_id: int) -> Dict[str, Any]:
     """
     Convert a raw scraped recipe into the application's standard format.
+    Automatically scales to 2 servings and converts imperial units to metric.
 
     Args:
         raw_recipe: Raw recipe data from scraper
@@ -317,15 +372,32 @@ def normalize_recipe(raw_recipe: Dict[str, Any], recipe_id: int) -> Dict[str, An
     cooking_time = "quick" if total_time <= 30 else "long"
 
     # Parse servings from yields string
-    servings = parse_servings(raw_recipe.get("yields", "4"))
+    original_servings = parse_servings(raw_recipe.get("yields", "4"))
+
+    # Scale to 2 servings and convert to metric
+    scale_factor = 2 / original_servings
+    scaled_ingredients = []
+    for ingredient in ingredients:
+        scaled_ing = ingredient.copy()
+
+        # Scale amount
+        scaled_amount = ingredient["amount"] * scale_factor
+
+        # Convert to metric if needed
+        metric_amount, metric_unit = convert_to_metric(scaled_amount, ingredient["unit"])
+
+        scaled_ing["amount"] = round(metric_amount, 1)
+        scaled_ing["unit"] = metric_unit
+
+        scaled_ingredients.append(scaled_ing)
 
     # Build normalized recipe
     normalized = {
         "id": recipe_id,
         "name": raw_recipe.get("name", "Imported Recipe"),
         "cooking_time": cooking_time,
-        "servings": servings,
-        "ingredients": ingredients,
+        "servings": 2,  # Always normalize to 2 servings
+        "ingredients": scaled_ingredients,
         "steps": steps
     }
 

@@ -51,6 +51,7 @@ class MenuPlanner:
     def select_recipes(self, nights: int, preference: str) -> tuple[List[Dict[str, Any]], bool]:
         """
         Select recipes for the meal plan based on preferences.
+        ALWAYS includes all imported (temp) recipes first, then fills remaining nights with random recipes.
 
         Args:
             nights: Number of nights to plan for
@@ -59,18 +60,38 @@ class MenuPlanner:
         Returns:
             Tuple of (selected recipes, had_to_add_other_category)
         """
-        filtered = self.filter_recipes(preference)
+        selected = []
         had_to_mix = False
 
-        # If insufficient recipes, add from other category
-        if len(filtered) < nights and preference != "mixed":
-            had_to_mix = True
-            other_pref = "long" if preference == "quick" else "quick"
-            other_recipes = self.filter_recipes(other_pref)
-            filtered.extend(other_recipes)
+        # ALWAYS include all imported recipes first
+        if self.temp_recipes:
+            selected.extend(self.temp_recipes)
 
-        # Randomly select recipes without replacement
-        selected = random.sample(filtered, min(nights, len(filtered)))
+        # Calculate how many more recipes we need
+        remaining_nights = nights - len(selected)
+
+        if remaining_nights > 0:
+            # Get permanent recipes only (exclude temp recipes)
+            filtered = self.filter_recipes(preference)
+            # Remove any temp recipes from filtered list
+            filtered = [r for r in filtered if r not in self.temp_recipes]
+
+            # If insufficient recipes, add from other category
+            if len(filtered) < remaining_nights and preference != "mixed":
+                had_to_mix = True
+                other_pref = "long" if preference == "quick" else "quick"
+                # Get all recipes from combined pool
+                all_recipes = self.recipes + self.temp_recipes
+                other_recipes = [r for r in all_recipes if r["cooking_time"] == other_pref]
+                # Remove temp recipes (already added)
+                other_recipes = [r for r in other_recipes if r not in self.temp_recipes]
+                filtered.extend(other_recipes)
+
+            # Randomly select remaining recipes without replacement
+            if filtered:
+                additional = random.sample(filtered, min(remaining_nights, len(filtered)))
+                selected.extend(additional)
+
         return selected, had_to_mix
 
     def scale_recipe(self, recipe: Dict[str, Any], household_size: int) -> Dict[str, Any]:
@@ -284,3 +305,50 @@ class MenuPlanner:
         self.clear_temp_recipes()
 
         return saved_count
+
+    def delete_recipes_by_ids(self, recipe_ids: List[int],
+                             file_path: str = None) -> int:
+        """
+        Delete recipes by their IDs from the permanent recipe file.
+
+        Args:
+            recipe_ids: List of recipe IDs to delete
+            file_path: Path to recipes file (defaults to self.recipes_path)
+
+        Returns:
+            Number of recipes successfully deleted
+
+        Raises:
+            ValueError: If file doesn't exist or can't be written
+        """
+        if not recipe_ids:
+            return 0
+
+        # Use default path if none provided
+        if file_path is None:
+            file_path = str(self.recipes_path)
+
+        # Load current recipes
+        path = Path(file_path)
+        if not path.exists():
+            raise ValueError(f"Recipe file {file_path} does not exist")
+
+        with open(path, "r") as f:
+            existing_recipes = json.load(f)
+
+        # Filter out recipes with matching IDs
+        initial_count = len(existing_recipes)
+        filtered_recipes = [
+            recipe for recipe in existing_recipes
+            if recipe["id"] not in recipe_ids
+        ]
+        deleted_count = initial_count - len(filtered_recipes)
+
+        # Save updated recipes back to file
+        with open(path, "w") as f:
+            json.dump(filtered_recipes, f, indent=2)
+
+        # Reload recipes to sync in-memory list
+        self.recipes = self._load_recipes()
+
+        return deleted_count

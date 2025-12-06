@@ -9,8 +9,16 @@
 <body>
     <div class="container">
         <header>
-            <h1>🍳 Menu Planner</h1>
-            <p class="subtitle">Generate weekly meal plans and shopping lists</p>
+            <div class="header-content">
+                <div class="header-left">
+                    <img src="{{ url_for('static', filename='images/logo white.png') }}" alt="Zest Logo" class="header-logo">
+                    <div class="header-text">
+                        <h1>Menu Planner</h1>
+                        <p class="subtitle">Generate weekly meal plans and shopping lists</p>
+                    </div>
+                </div>
+                <a href="/recipes" class="btn-secondary">📚 My Recipes</a>
+            </div>
         </header>
 
         <div class="form-section">
@@ -36,19 +44,39 @@
 
                 <div class="form-divider"></div>
 
-                <!-- Recipe Import Section (Inline) -->
+                <!-- Recipe Selection Section (Inline) -->
                 <div class="import-section-inline">
-                    <label class="import-label">🌐 Add Specific Recipes (Optional)</label>
-                    <p class="help-text">Import recipes from the web to include in your meal plan</p>
+                    <label class="import-label">🍽️ Add Specific Recipes (Optional)</label>
+                    <p class="help-text">Choose recipes from your library or import from the web</p>
 
-                    <div class="url-input-group">
-                        <input type="url" id="recipeUrl" placeholder="https://example.com/recipe" class="url-input">
-                        <button type="button" id="importBtn" class="btn-secondary">+ Import</button>
+                    <!-- Tab Navigation -->
+                    <div class="recipe-tabs">
+                        <button type="button" class="recipe-tab active" id="myRecipesTab">📚 My Recipes</button>
+                        <button type="button" class="recipe-tab" id="importUrlTab">🌐 Import from URL</button>
                     </div>
 
-                    <div id="importedRecipes" class="imported-recipes-chips"></div>
+                    <!-- Option 1: My Recipes -->
+                    <div id="myRecipesSection" class="recipe-option-section">
+                        <div class="my-recipes-dropdown-container">
+                            <select id="myRecipesDropdown" class="my-recipes-dropdown" size="6" multiple>
+                                <option value="" disabled>Loading recipes...</option>
+                            </select>
+                            <button type="button" id="addFromLibraryBtn" class="btn-secondary btn-small">+ Add Selected</button>
+                        </div>
+                        <p class="help-text-small">Hold Ctrl (Cmd on Mac) to select multiple recipes</p>
+                    </div>
 
-                    <p class="supported-sites-small">✓ Supports 500+ sites including AllRecipes, BBC Good Food, Food Network, Serious Eats</p>
+                    <!-- Option 2: Import from URL -->
+                    <div id="importUrlSection" class="recipe-option-section hidden">
+                        <div class="url-input-group">
+                            <input type="url" id="recipeUrl" placeholder="https://example.com/recipe" class="url-input">
+                            <button type="button" id="importBtn" class="btn-secondary">+ Import</button>
+                        </div>
+                        <p class="supported-sites-small">✓ Supports 500+ sites including AllRecipes, BBC Good Food, Food Network, Serious Eats</p>
+                    </div>
+
+                    <!-- Selected Recipes Chips -->
+                    <div id="importedRecipes" class="imported-recipes-chips"></div>
                 </div>
 
                 <button type="submit" class="btn-primary">Generate Meal Plan</button>

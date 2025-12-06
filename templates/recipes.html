@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Recipe Library - Menu Planner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header class="recipes-header">
+            <div class="header-content">
+                <div class="header-left">
+                    <img src="{{ url_for('static', filename='images/logo white.png') }}" alt="Zest Logo" class="header-logo">
+                    <div class="header-text">
+                        <a href="/" class="back-link">← Back to Planner</a>
+                        <h1>My Recipe Library</h1>
+                    </div>
+                </div>
+                <button id="addRecipeBtn" class="btn-primary">+ Add New Recipe</button>
+            </div>
+        </header>
+
+        <!-- Bulk Actions Bar (appears when recipes are selected) -->
+        <div id="bulkActionsBar" class="bulk-actions-bar hidden">
+            <span id="selectedCount">0 recipes selected</span>
+            <button id="deleteSelectedBtn" class="btn-danger">Delete Selected</button>
+        </div>
+
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Loading recipes...</p>
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="empty-state hidden">
+            <div class="empty-icon">🍽️</div>
+            <h2>No Recipes Yet</h2>
+            <p>Start building your recipe library by adding your first recipe!</p>
+            <button id="addFirstRecipeBtn" class="btn-primary">+ Add Recipe</button>
+        </div>
+
+        <!-- Recipe Grid -->
+        <div id="recipeGrid" class="recipe-grid"></div>
+
+        <!-- Add Recipe Modal -->
+        <div id="addRecipeModal" class="modal hidden">
+            <div class="modal-content modal-medium">
+                <div class="modal-header">
+                    <h3>➕ Add New Recipe</h3>
+                    <button class="modal-close" id="closeAddModal">&times;</button>
+                </div>
+
+                <div class="import-section-modal">
+                    <label class="import-label">🌐 Import Recipe from URL</label>
+                    <p class="help-text">Paste a recipe URL from supported websites to automatically import it</p>
+
+                    <div class="url-input-group">
+                        <input type="url" id="recipeUrlInput" placeholder="https://example.com/recipe" class="url-input">
+                        <button type="button" id="importRecipeBtn" class="btn-primary">Import Recipe</button>
+                    </div>
+
+                    <div class="supported-sites-info">
+                        <p class="supported-sites-title">✓ Supported websites (500+ recipe sites including):</p>
+                        <ul class="supported-sites-list">
+                            <li>AllRecipes</li>
+                            <li>BBC Good Food</li>
+                            <li>Food Network</li>
+                            <li>Serious Eats</li>
+                            <li>Bon Appétit</li>
+                            <li>taste.com.au</li>
+                            <li>womensweeklyfood.com.au</li>
+                            <li>bestrecipes.com.au</li>
+                            <li>And many more...</li>
+                        </ul>
+                        <p class="unsupported-note">⚠️ <strong>Not supported:</strong> Coles Australia (coles.com.au) - uses anti-bot protection</p>
+                    </div>
+                </div>
+
+                <div class="modal-buttons">
+                    <button type="button" id="cancelAddRecipe" class="btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recipe Details Modal -->
+        <div id="recipeDetailsModal" class="modal hidden">
+            <div class="modal-content modal-large">
+                <div class="modal-header">
+                    <h3 id="detailsRecipeName"></h3>
+                    <button class="modal-close" id="closeDetailsModal">&times;</button>
+                </div>
+
+                <div id="recipeDetailsContent" class="recipe-details">
+                    <!-- Recipe details will be inserted here -->
+                </div>
+
+                <div class="modal-buttons">
+                    <button id="closeDetailsBtn" class="btn-secondary">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delete Confirmation Modal -->
+        <div id="deleteConfirmModal" class="modal hidden">
+            <div class="modal-content">
+                <h3>⚠️ Delete Recipes?</h3>
+                <p id="deleteConfirmMessage">Are you sure you want to delete the selected recipe(s)? This action cannot be undone.</p>
+
+                <div class="modal-buttons">
+                    <button id="confirmDeleteBtn" class="btn-danger">Delete</button>
+                    <button id="cancelDeleteBtn" class="btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Recipe library stored in <code>recipes.json</code></p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/recipes.js') }}"></script>
+</body>
+</html>

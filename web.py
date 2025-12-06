@@ -10,8 +10,10 @@ from core import MenuPlanner
 from services.web_scraper import (
     fetch_recipe_from_url,
     normalize_recipe,
+    validate_recipe_schema,
     RecipeScraperError,
-    RecipeNotFoundError
+    RecipeNotFoundError,
+    RecipeValidationError
 )
 import json
 from pathlib import Path
@@ -24,6 +26,12 @@ planner = MenuPlanner("recipes.json")
 def index():
     """Render the main page."""
     return render_template('index.html')
+
+
+@app.route('/recipes')
+def recipes():
+    """Render the recipe library page."""
+    return render_template('recipes.html')
 
 
 @app.route('/api/generate-plan', methods=['POST'])
@@ -149,6 +157,88 @@ def clear_temp_recipes():
         })
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/recipes', methods=['POST'])
+def add_recipe():
+    """API endpoint to add a new recipe manually."""
+    try:
+        data = request.json
+
+        # Validate required fields
+        required_fields = ['name', 'cooking_time', 'servings', 'ingredients', 'steps']
+        for field in required_fields:
+            if field not in data:
+                return jsonify({'error': f'Missing required field: {field}'}), 400
+
+        # Generate new recipe ID
+        recipe_id = planner.get_next_recipe_id()
+
+        # Create recipe object
+        new_recipe = {
+            'id': recipe_id,
+            'name': data['name'].strip(),
+            'cooking_time': data['cooking_time'],
+            'servings': int(data['servings']),
+            'ingredients': data['ingredients'],
+            'steps': data['steps']
+        }
+
+        # Add optional fields if provided
+        if 'source_url' in data and data['source_url']:
+            new_recipe['source_url'] = data['source_url']
+        if 'image_url' in data and data['image_url']:
+            new_recipe['image_url'] = data['image_url']
+
+        # Validate recipe schema
+        validate_recipe_schema(new_recipe)
+
+        # Save recipe to file
+        planner.save_recipe_to_file(new_recipe)
+
+        return jsonify({
+            'success': True,
+            'recipe': new_recipe,
+            'message': f'Successfully added recipe: {new_recipe["name"]}'
+        })
+
+    except RecipeValidationError as e:
+        return jsonify({'error': f'Validation error: {str(e)}'}), 400
+    except ValueError as e:
+        return jsonify({'error': str(e)}), 400
+    except Exception as e:
+        return jsonify({'error': f'Unexpected error: {str(e)}'}), 500
+
+
+@app.route('/api/recipes', methods=['DELETE'])
+def delete_recipes():
+    """API endpoint to delete recipes by IDs."""
+    try:
+        data = request.json
+        recipe_ids = data.get('recipe_ids', [])
+
+        if not recipe_ids:
+            return jsonify({'error': 'No recipe IDs provided'}), 400
+
+        if not isinstance(recipe_ids, list):
+            return jsonify({'error': 'recipe_ids must be an array'}), 400
+
+        # Convert to integers
+        recipe_ids = [int(id) for id in recipe_ids]
+
+        # Delete recipes
+        deleted_count = planner.delete_recipes_by_ids(recipe_ids)
+
+        return jsonify({
+            'success': True,
+            'deleted_count': deleted_count,
+            'message': f'Successfully deleted {deleted_count} recipe(s)'
+        })
+
+    except ValueError as e:
+        return jsonify({'error': str(e)}), 400
+    except Exception as e:
+        return jsonify({'error': f'Unexpected error: {str(e)}'}), 500
 
 
 if __name__ == '__main__':
