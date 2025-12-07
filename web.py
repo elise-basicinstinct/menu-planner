@@ -39,21 +39,32 @@ def generate_plan():
     """API endpoint to generate a meal plan."""
     try:
         data = request.json
-        
+
         household_size = int(data.get('household_size', 2))
         nights = int(data.get('nights', 3))
         preference = data.get('cooking_time_preference', 'mixed')
-        
+        selected_recipe_ids = data.get('selected_recipe_ids', [])
+
         # Validate inputs
         if household_size < 1:
             return jsonify({'error': 'Household size must be at least 1'}), 400
-        
+
         if nights < 1 or nights > 7:
             return jsonify({'error': 'Number of nights must be between 1 and 7'}), 400
-        
+
         if preference not in ['quick', 'long', 'mixed']:
             return jsonify({'error': 'Invalid cooking time preference'}), 400
-        
+
+        # Add selected library recipes to temp_recipes if provided
+        if selected_recipe_ids:
+            for recipe_id in selected_recipe_ids:
+                # Find recipe in permanent library
+                recipe = next((r for r in planner.recipes if r['id'] == recipe_id), None)
+                if recipe:
+                    # Only add if not already in temp_recipes
+                    if not any(tr['id'] == recipe_id for tr in planner.temp_recipes):
+                        planner.add_temp_recipe(recipe)
+
         # Generate plan
         plan = planner.generate_plan(household_size, nights, preference)
         

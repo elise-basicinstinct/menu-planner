@@ -108,7 +108,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const formData = {
             household_size: parseInt(document.getElementById('household_size').value),
             nights: parseInt(document.getElementById('nights').value),
-            cooking_time_preference: document.getElementById('cooking_time_preference').value
+            cooking_time_preference: document.getElementById('cooking_time_preference').value,
+            selected_recipe_ids: importedRecipes.map(r => r.id)
         };
         
         try {
