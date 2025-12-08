@@ -53,6 +53,7 @@
                     <div class="recipe-tabs">
                         <button type="button" class="recipe-tab active" id="myRecipesTab">📚 My Recipes</button>
                         <button type="button" class="recipe-tab" id="importUrlTab">🌐 Import from URL</button>
+                        <button type="button" class="recipe-tab" id="aiAssistantTab">🤖 AI Assistant</button>
                     </div>
 
                     <!-- Option 1: My Recipes -->
@@ -73,6 +74,24 @@
                             <button type="button" id="importBtn" class="btn-secondary">+ Import</button>
                         </div>
                         <p class="supported-sites-small">✓ Supports 500+ sites including AllRecipes, BBC Good Food, Food Network, Serious Eats</p>
+                    </div>
+
+                    <!-- Option 3: AI Assistant -->
+                    <div id="aiAssistantSection" class="recipe-option-section hidden">
+                        <p class="help-text-small" style="margin-bottom: 15px;">Chat with AI to find BBC Good Food recipes that match your preferences</p>
+
+                        <div id="chatMessages" class="chat-messages">
+                            <div class="chat-message ai-message">
+                                <strong>AI Assistant:</strong> Hi! I'm here to help you find recipes from BBC Good Food. What are you in the mood for? Tell me about your preferences (quick meals, specific ingredients, cuisine type, etc.) and I'll suggest some recipes!
+                            </div>
+                        </div>
+
+                        <div class="chat-input-container">
+                            <input type="text" id="aiChatInput" placeholder="E.g., 'I want something quick with chicken'" class="chat-input">
+                            <button type="button" id="aiChatSend" class="btn-secondary">Send</button>
+                        </div>
+
+                        <div id="aiSuggestedRecipes" class="ai-suggested-recipes"></div>
                     </div>
 
                     <!-- Selected Recipes Chips -->

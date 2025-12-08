@@ -7,7 +7,10 @@ A simple Python CLI tool for generating weekly meal plans and shopping lists.
 - Generate meal plans for 1-7 nights
 - Scale recipes based on household size
 - Filter by cooking time preference (quick/long/mixed)
-- **Import recipes from URLs** - Add recipes from any website
+- **Three ways to add recipes:**
+  1. **Recipe Library** - Select from your saved recipes
+  2. **Import from URLs** - Add recipes from any website (500+ supported sites)
+  3. **AI Recipe Assistant** - Chat with AI to find BBC Good Food recipes based on your preferences
 - Automatic shopping list aggregation
 - Save plans to `last_plan.json` for reference
 - Optionally save imported recipes permanently
@@ -58,7 +61,10 @@ http://localhost:5001
 
 The web interface provides:
 - Beautiful, modern UI for generating meal plans
-- **Recipe import from URLs** - Add recipes from any website with automatic scraping
+- **Three ways to add recipes:**
+  1. **My Recipes** - Multi-select from your recipe library
+  2. **Import from URLs** - Add recipes from any website with automatic scraping
+  3. **AI Assistant** - Chat with AI to find BBC Good Food recipes
 - Interactive form to input preferences
 - Visual display of recipes with ingredients and cooking steps
 - Organized shopping list
@@ -77,7 +83,8 @@ The web app runs on `http://0.0.0.0:5001` by default, making it accessible from 
 ├── cli.py              # CLI interface (user interaction)
 ├── services/           # Service modules
 │   ├── __init__.py
-│   └── web_scraper.py  # Recipe URL scraping and parsing
+│   ├── web_scraper.py  # Recipe URL scraping and parsing
+│   └── ai_assistant.py # AI-powered recipe recommendations (Google Gemini)
 ├── recipes.json        # Recipe database
 ├── specials.json       # Placeholder for supermarket specials
 ├── last_plan.json      # Most recent meal plan (auto-generated)
@@ -190,7 +197,10 @@ def generate():
 - Python 3.6+
 - Flask 3.0.0+
 - `recipe-scrapers` 15.9.0+
+- `google-generativeai` 0.8.0+ (for AI Assistant - optional)
 - Install via `pip3 install -r requirements.txt`
+
+**Note:** The AI Assistant feature requires a free Google Gemini API key. The app will work without it, but the AI Assistant tab will show an error message.
 
 ## Recipe URL Import Feature
 
@@ -228,6 +238,93 @@ Imported recipes are automatically normalized to match the app's format:
 - Ingredients are extracted with amounts and units
 - Recipes are assigned unique IDs
 - Optional metadata (source URL, image URL) is preserved
+
+## AI Recipe Assistant Feature
+
+### Overview
+
+The AI Recipe Assistant uses Google Gemini (free tier) to help you discover BBC Good Food recipes through natural conversation. Instead of browsing recipes manually, simply chat with the AI about what you're in the mood for, and it will recommend relevant recipes.
+
+### Setup
+
+1. **Get a free API key** from Google AI Studio:
+   - Visit: https://aistudio.google.com/app/apikey
+   - Sign in with your Google account
+   - Create an API key (takes 30 seconds)
+
+2. **Configure the API key**:
+   ```bash
+   # Create .env file in the project root
+   echo "GEMINI_API_KEY=your_actual_api_key_here" > .env
+   ```
+
+   Or set it as an environment variable:
+   ```bash
+   export GEMINI_API_KEY=your_actual_api_key_here
+   python3 web.py
+   ```
+
+3. **For deployment (Render, etc.)**:
+   - Add `GEMINI_API_KEY` as an environment variable in your deployment platform's settings
+
+### How It Works
+
+1. **Start a conversation** - Click the "🤖 AI Assistant" tab in the web interface
+2. **Describe your preferences** - Chat naturally about what you want:
+   - "I want something quick with chicken"
+   - "Looking for a healthy vegetarian meal"
+   - "Need a comforting pasta dish for cold weather"
+   - "What's a good recipe under 30 minutes?"
+3. **Get recommendations** - The AI suggests 2-3 BBC Good Food recipes with URLs
+4. **Add to menu** - Click "+ Add to Menu" on any suggested recipe
+5. **Auto-import** - Recipe is automatically imported, normalized (metric, 2 servings), and added to your menu
+
+### Features
+
+- **Natural language queries** - No need for exact search terms
+- **Contextual conversation** - Ask follow-up questions, refine preferences
+- **Automatic import** - Recommended recipes are automatically scraped and normalized
+- **BBC Good Food focus** - Specializes in high-quality, well-tested recipes
+- **Free tier** - Uses Google Gemini 1.5 Flash (60 requests/minute, completely free)
+
+### Example Conversation
+
+```
+You: I want something quick and easy with chicken
+
+AI: Great! Do you prefer Asian-style stir-fries, Mediterranean dishes,
+    or something else? And are you cooking for 2 or more people?
+
+You: Asian stir-fry for 2
+
+AI: Perfect! Here are some quick chicken stir-fry recipes:
+
+    1. Quick chicken stir-fry - Ready in 20 mins
+       https://www.bbcgoodfood.com/recipes/quick-chicken-stir-fry
+
+    2. Chicken & cashew stir-fry - Ready in 25 mins
+       https://www.bbcgoodfood.com/recipes/chicken-cashew-stir-fry
+
+    Would you like to add any of these to your meal plan?
+```
+
+Then simply click "+ Add to Menu" on the recipe you want!
+
+### Troubleshooting
+
+**"AI assistant not configured" error**:
+- Make sure `GEMINI_API_KEY` is set in your `.env` file or environment variables
+- Restart the web server after adding the API key
+
+**"API error" messages**:
+- Check that your API key is valid
+- Ensure you haven't exceeded the free tier rate limit (60 requests/minute)
+- Verify your internet connection
+
+**No recipes suggested**:
+- Try being more specific about your preferences
+- Ask the AI to clarify what information it needs
+- Mention cooking time, ingredients, or cuisine type
 
 ## Example Output
 

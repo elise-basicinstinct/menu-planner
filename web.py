@@ -15,11 +15,21 @@ from services.web_scraper import (
     RecipeNotFoundError,
     RecipeValidationError
 )
+from services.ai_assistant import AIAssistant, APIKeyMissingError, AIAssistantError
 import json
 from pathlib import Path
+import os
 
 app = Flask(__name__)
 planner = MenuPlanner("recipes.json")
+
+# Initialize AI assistant (will be None if no API key is configured)
+try:
+    ai_assistant = AIAssistant()
+except (ValueError, APIKeyMissingError):
+    ai_assistant = None
+    print("Warning: GEMINI_API_KEY not found. AI assistant features will be disabled.")
+    print("Get your free API key from https://aistudio.google.com/app/apikey")
 
 
 @app.route('/')
@@ -248,6 +258,40 @@ def delete_recipes():
 
     except ValueError as e:
         return jsonify({'error': str(e)}), 400
+    except Exception as e:
+        return jsonify({'error': f'Unexpected error: {str(e)}'}), 500
+
+
+@app.route('/api/ai-chat', methods=['POST'])
+def ai_chat():
+    """API endpoint for AI-powered recipe recommendations."""
+    try:
+        # Check if AI assistant is available
+        if ai_assistant is None:
+            return jsonify({
+                'error': 'AI assistant not configured. Please set GEMINI_API_KEY environment variable.',
+                'setup_url': 'https://aistudio.google.com/app/apikey'
+            }), 503
+
+        data = request.json
+        user_message = data.get('message', '').strip()
+        conversation_history = data.get('history', [])
+
+        if not user_message:
+            return jsonify({'error': 'Message is required'}), 400
+
+        # Get AI response and extract recipe URLs
+        ai_response, recipe_urls = ai_assistant.chat(user_message, conversation_history)
+
+        return jsonify({
+            'success': True,
+            'message': ai_response,
+            'recipe_urls': recipe_urls,
+            'recipe_count': len(recipe_urls)
+        })
+
+    except AIAssistantError as e:
+        return jsonify({'error': f'AI error: {str(e)}'}), 500
     except Exception as e:
         return jsonify({'error': f'Unexpected error: {str(e)}'}), 500
 

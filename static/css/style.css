@@ -549,6 +549,127 @@ header h1 {
     transform: scale(1.1);
 }
 
+/* AI Chat Interface */
+.chat-messages {
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+}
+
+.chat-message {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    animation: fadeIn 0.3s ease;
+}
+
+.chat-message:last-child {
+    margin-bottom: 0;
+}
+
+.user-message {
+    background: #f0f0f0;
+    margin-left: 20px;
+}
+
+.ai-message {
+    background: #faf8fb;
+    border-left: 3px solid #d4a5c4;
+}
+
+.chat-input-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.chat-input {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.chat-input:focus {
+    outline: none;
+    border-color: #1a2332;
+}
+
+.ai-suggested-recipes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.ai-recipe-card {
+    background: white;
+    border: 2px solid #d4a5c4;
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s;
+    animation: fadeIn 0.3s ease;
+}
+
+.ai-recipe-card:hover {
+    box-shadow: 0 2px 8px rgba(212, 165, 196, 0.3);
+    transform: translateY(-1px);
+}
+
+.ai-recipe-info {
+    flex: 1;
+}
+
+.ai-recipe-name {
+    font-weight: 600;
+    color: #1a2332;
+    margin-bottom: 4px;
+}
+
+.ai-recipe-url {
+    font-size: 0.85em;
+    color: #888;
+    word-break: break-all;
+}
+
+.ai-add-recipe-btn {
+    padding: 8px 16px;
+    background: #1a2332;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+
+.ai-add-recipe-btn:hover {
+    background: #0d1720;
+    transform: scale(1.05);
+}
+
+.ai-add-recipe-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.chat-loading {
+    text-align: center;
+    padding: 10px;
+    color: #888;
+    font-style: italic;
+}
+
 /* Modal */
 .modal {
     position: fixed;

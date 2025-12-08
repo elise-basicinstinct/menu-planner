@@ -9,8 +9,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Recipe selection tabs
     const myRecipesTab = document.getElementById('myRecipesTab');
     const importUrlTab = document.getElementById('importUrlTab');
+    const aiAssistantTab = document.getElementById('aiAssistantTab');
     const myRecipesSection = document.getElementById('myRecipesSection');
     const importUrlSection = document.getElementById('importUrlSection');
+    const aiAssistantSection = document.getElementById('aiAssistantSection');
     const myRecipesDropdown = document.getElementById('myRecipesDropdown');
     const addFromLibraryBtn = document.getElementById('addFromLibraryBtn');
 
@@ -23,9 +25,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const saveRecipesSubmit = document.getElementById('saveRecipesSubmit');
     const saveRecipesSkip = document.getElementById('saveRecipesSkip');
 
+    // AI chat elements
+    const aiChatInput = document.getElementById('aiChatInput');
+    const aiChatSend = document.getElementById('aiChatSend');
+    const chatMessages = document.getElementById('chatMessages');
+    const aiSuggestedRecipes = document.getElementById('aiSuggestedRecipes');
+
     let importedRecipes = [];
     let hasGeneratedPlan = false;
     let libraryRecipes = [];
+    let chatHistory = [];
 
     // Load recipes from library
     loadLibraryRecipes();
@@ -34,15 +43,28 @@ document.addEventListener('DOMContentLoaded', function() {
     myRecipesTab.addEventListener('click', function() {
         myRecipesTab.classList.add('active');
         importUrlTab.classList.remove('active');
+        aiAssistantTab.classList.remove('active');
         myRecipesSection.classList.remove('hidden');
         importUrlSection.classList.add('hidden');
+        aiAssistantSection.classList.add('hidden');
     });
 
     importUrlTab.addEventListener('click', function() {
         importUrlTab.classList.add('active');
         myRecipesTab.classList.remove('active');
+        aiAssistantTab.classList.remove('active');
         importUrlSection.classList.remove('hidden');
         myRecipesSection.classList.add('hidden');
+        aiAssistantSection.classList.add('hidden');
+    });
+
+    aiAssistantTab.addEventListener('click', function() {
+        aiAssistantTab.classList.add('active');
+        myRecipesTab.classList.remove('active');
+        importUrlTab.classList.remove('active');
+        aiAssistantSection.classList.remove('hidden');
+        myRecipesSection.classList.add('hidden');
+        importUrlSection.classList.add('hidden');
     });
 
     // Add recipes from library
@@ -91,6 +113,19 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.key === 'Enter') {
             e.preventDefault();
             importBtn.click();
+        }
+    });
+
+    // AI chat send button handler
+    aiChatSend.addEventListener('click', async function() {
+        await sendAIChatMessage();
+    });
+
+    // Allow Enter key to send AI chat message
+    aiChatInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            aiChatSend.click();
         }
     });
 
@@ -420,6 +455,136 @@ document.addEventListener('DOMContentLoaded', function() {
             toast.classList.remove('show');
             setTimeout(() => toast.remove(), 300);
         }, 3000);
+    }
+
+    async function sendAIChatMessage() {
+        const message = aiChatInput.value.trim();
+
+        if (!message) {
+            showToast('Please enter a message', 'info');
+            return;
+        }
+
+        // Display user message
+        displayUserMessage(message);
+
+        // Clear input
+        aiChatInput.value = '';
+
+        // Disable input while processing
+        aiChatInput.disabled = true;
+        aiChatSend.disabled = true;
+        aiChatSend.textContent = 'Thinking...';
+
+        try {
+            const response = await fetch('/api/ai-chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: message,
+                    history: chatHistory
+                })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Failed to get AI response');
+            }
+
+            // Add to chat history
+            chatHistory.push({ role: 'user', content: message });
+            chatHistory.push({ role: 'assistant', content: data.message });
+
+            // Display AI response
+            displayAIMessage(data.message);
+
+            // Display suggested recipes if any
+            if (data.recipe_urls && data.recipe_urls.length > 0) {
+                displaySuggestedRecipes(data.recipe_urls);
+            }
+
+        } catch (error) {
+            showToast(`✗ ${error.message}`, 'error');
+        } finally {
+            // Re-enable input
+            aiChatInput.disabled = false;
+            aiChatSend.disabled = false;
+            aiChatSend.textContent = 'Send';
+            aiChatInput.focus();
+        }
+    }
+
+    function displayUserMessage(message) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'chat-message user-message';
+        messageDiv.innerHTML = `<strong>You:</strong> ${escapeHtml(message)}`;
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function displayAIMessage(message) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'chat-message ai-message';
+
+        // Convert URLs to clickable links and preserve formatting
+        const formattedMessage = formatAIMessage(message);
+        messageDiv.innerHTML = `<strong>AI Assistant:</strong> ${formattedMessage}`;
+
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function formatAIMessage(message) {
+        // Escape HTML
+        let formatted = escapeHtml(message);
+
+        // Convert line breaks to <br>
+        formatted = formatted.replace(/\n/g, '<br>');
+
+        // Convert BBC Good Food URLs to clickable links
+        formatted = formatted.replace(
+            /(https?:\/\/(?:www\.)?bbcgoodfood\.com\/recipes\/[a-z0-9-]+)/gi,
+            '<a href="$1" target="_blank" rel="noopener">$1</a>'
+        );
+
+        return formatted;
+    }
+
+    function displaySuggestedRecipes(recipeUrls) {
+        // Clear previous suggestions
+        aiSuggestedRecipes.innerHTML = '<h4 style="margin-top: 20px; margin-bottom: 10px;">Suggested Recipes:</h4>';
+
+        recipeUrls.forEach(url => {
+            const recipeCard = document.createElement('div');
+            recipeCard.className = 'ai-recipe-card';
+
+            // Extract recipe name from URL (approximate)
+            const recipeName = url.split('/').pop().replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
+            recipeCard.innerHTML = `
+                <div class="ai-recipe-info">
+                    <div class="ai-recipe-name">${recipeName}</div>
+                    <a href="${url}" target="_blank" rel="noopener" class="ai-recipe-url">${url}</a>
+                </div>
+                <button class="ai-add-recipe-btn" onclick="addAIRecipeToMenu('${url}')">+ Add to Menu</button>
+            `;
+
+            aiSuggestedRecipes.appendChild(recipeCard);
+        });
+    }
+
+    // Make addAIRecipeToMenu available globally
+    window.addAIRecipeToMenu = async function(url) {
+        await importRecipeFromURL(url);
+    };
+
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
     }
 });
 
