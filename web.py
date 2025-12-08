@@ -23,6 +23,7 @@ from services.ai_assistant import AIAssistant, APIKeyMissingError, AIAssistantEr
 import json
 from pathlib import Path
 import os
+import requests
 
 app = Flask(__name__)
 planner = MenuPlanner("recipes.json")
@@ -266,6 +267,24 @@ def delete_recipes():
         return jsonify({'error': f'Unexpected error: {str(e)}'}), 500
 
 
+def validate_recipe_url(url: str, timeout: int = 3) -> bool:
+    """
+    Check if a recipe URL is valid and accessible.
+
+    Args:
+        url: The recipe URL to validate
+        timeout: Request timeout in seconds
+
+    Returns:
+        True if URL returns 200 OK, False otherwise
+    """
+    try:
+        response = requests.head(url, timeout=timeout, allow_redirects=True)
+        return response.status_code == 200
+    except:
+        return False
+
+
 @app.route('/api/ai-chat', methods=['POST'])
 def ai_chat():
     """API endpoint for AI-powered recipe recommendations."""
@@ -287,11 +306,27 @@ def ai_chat():
         # Get AI response and extract recipe URLs
         ai_response, recipe_urls = ai_assistant.chat(user_message, conversation_history)
 
+        # Validate recipe URLs - filter out broken links
+        valid_urls = []
+        invalid_urls = []
+
+        for url in recipe_urls:
+            if validate_recipe_url(url):
+                valid_urls.append(url)
+            else:
+                invalid_urls.append(url)
+
+        # If some URLs were filtered out, add a note to the response
+        if invalid_urls and valid_urls:
+            ai_response += f"\n\n(Note: {len(invalid_urls)} suggested recipe(s) are no longer available and have been filtered out.)"
+        elif invalid_urls and not valid_urls:
+            ai_response += "\n\n(Unfortunately, the suggested recipes are no longer available on BBC Good Food. Please try rephrasing your request or asking for different types of recipes.)"
+
         return jsonify({
             'success': True,
             'message': ai_response,
-            'recipe_urls': recipe_urls,
-            'recipe_count': len(recipe_urls)
+            'recipe_urls': valid_urls,
+            'recipe_count': len(valid_urls)
         })
 
     except AIAssistantError as e:
