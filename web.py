@@ -6,7 +6,11 @@ Run with: python3 web.py
 """
 
 from flask import Flask, render_template, request, jsonify
+from dotenv import load_dotenv
 from core import MenuPlanner
+
+# Load environment variables from .env file
+load_dotenv()
 from services.web_scraper import (
     fetch_recipe_from_url,
     normalize_recipe,
