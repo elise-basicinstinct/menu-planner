@@ -308,19 +308,37 @@ def ai_chat():
 
         # Validate recipe URLs - filter out broken links
         valid_urls = []
-        invalid_urls = []
 
         for url in recipe_urls:
             if validate_recipe_url(url):
                 valid_urls.append(url)
-            else:
-                invalid_urls.append(url)
 
-        # If some URLs were filtered out, add a note to the response
-        if invalid_urls and valid_urls:
-            ai_response += f"\n\n(Note: {len(invalid_urls)} suggested recipe(s) are no longer available and have been filtered out.)"
-        elif invalid_urls and not valid_urls:
-            ai_response += "\n\n(Unfortunately, the suggested recipes are no longer available on BBC Good Food. Please try rephrasing your request or asking for different types of recipes.)"
+        # If no valid URLs found, ask AI to try again with different recipes
+        max_retries = 2
+        retry_count = 0
+
+        while len(valid_urls) == 0 and len(recipe_urls) > 0 and retry_count < max_retries:
+            retry_count += 1
+
+            # Add a system message asking for alternative recipes
+            retry_history = conversation_history + [
+                {"role": "user", "content": user_message},
+                {"role": "assistant", "content": ai_response}
+            ]
+
+            retry_message = "Those recipes are no longer available. Please suggest different BBC Good Food recipes for the same request, using more common/popular recipe names."
+
+            ai_response, recipe_urls = ai_assistant.chat(retry_message, retry_history)
+
+            # Validate new URLs
+            valid_urls = []
+            for url in recipe_urls:
+                if validate_recipe_url(url):
+                    valid_urls.append(url)
+
+        # If still no valid recipes after retries, inform the user
+        if len(valid_urls) == 0 and len(recipe_urls) > 0:
+            ai_response = "I apologize, but I'm having trouble finding available recipes on BBC Good Food that match your request. This could be because the specific recipes have been archived. Could you try:\n\n1. Asking for a slightly different type of recipe\n2. Using more general terms (e.g., 'chicken pasta' instead of 'chicken alfredo')\n3. Specifying a different cuisine or ingredient\n\nI'm here to help find something delicious for you!"
 
         return jsonify({
             'success': True,
