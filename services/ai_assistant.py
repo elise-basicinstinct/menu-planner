@@ -71,7 +71,8 @@ class AIAssistant:
 
         # Configure Gemini
         genai.configure(api_key=self.api_key)
-        self.model = genai.GenerativeModel('gemini-pro')  # Free tier model
+        # Use the latest stable Gemini model
+        self.model = genai.GenerativeModel('models/gemini-1.5-pro')  # Latest stable model
 
     def chat(self, user_message: str, conversation_history: List[Dict[str, str]] = None) -> Tuple[str, List[str]]:
         """
